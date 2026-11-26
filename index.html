@@ -146,7 +146,30 @@ ul.tick li:before{content:"→";position:absolute;left:0;color:var(--orange);fon
 /* CALC */
 .calc{border:1px solid var(--line2);border-radius:10px;background:var(--panel);padding:24px}
 label{font-size:12.5px;font-weight:700;color:var(--muted);display:block;margin-bottom:6px;font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.05em}
-input[type=number],input[type=text],input[type=email]{width:100%;background:#0B0B10;border:1px solid var(--line2);color:#fff;border-radius:6px;padding:12px 13px;font-size:16px;min-height:48px;font-family:Inter}
+input[type=number],input[type=text],input[type=email],select,textarea{width:100%;background:#0B0B10;border:1px solid var(--line2);color:#fff;border-radius:6px;padding:12px 13px;font-size:16px;min-height:48px;font-family:Inter}
+textarea{min-height:110px;resize:vertical;line-height:1.5;font-size:14.5px}
+select{appearance:none}
+/* HINDI STUDIO */
+.hi-script{border:1px solid var(--line2);border-radius:10px;background:var(--panel);padding:22px}
+.script-line{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.script-line:last-of-type{border-bottom:0}
+.script-line .ts{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--orange);font-weight:700;padding-top:3px}
+.script-line .line{font-size:16.5px;font-weight:600;line-height:1.45}
+.script-line .note{font-size:13px;color:var(--dim);font-weight:400;margin-top:3px}
+.clip-cards{display:grid;gap:16px;margin-top:16px}
+@media(min-width:900px){.clip-cards{grid-template-columns:repeat(3,1fr)}}
+.clip-card{border:1px solid var(--line);border-radius:10px;background:var(--panel);overflow:hidden;display:flex;flex-direction:column}
+.clip-visual{height:120px;padding:14px;display:flex;flex-direction:column;justify-content:space-between}
+.clip-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.clip-body p{color:var(--muted);font-size:13.5px}
+.plan-out{display:grid;gap:10px;margin-top:16px}
+.plan-item{background:#0B0B10;border:1px solid var(--line2);border-radius:8px;padding:14px 16px}
+.plan-item b{font-family:Archivo;font-size:15.5px}
+.plan-item p{color:var(--muted);font-size:13.5px;margin-top:3px}
+.plan-item .hook{color:#FFB38A;font-size:13.5px;margin-top:6px}
+.template-box{background:#0B0B10;border:1px solid var(--line);border-radius:8px;padding:16px;font-size:14px;color:#DDD9E8;line-height:1.6;white-space:pre-wrap}
+.srt-box{font-family:"JetBrains Mono",monospace;font-size:12.5px;background:#0B0B10;border:1px solid var(--line);border-radius:8px;padding:16px;color:var(--muted);white-space:pre-wrap;overflow-x:auto;line-height:1.7}
+.srt-box b{color:#fff}
 input[type=range]{width:100%;accent-color:var(--orange)}
 .field{margin-bottom:16px}
 .result-box{background:#0B0B10;border:1px solid var(--line2);border-radius:8px;padding:20px;text-align:left;margin-top:16px}
@@ -199,7 +222,7 @@ footer{padding:34px 0 48px;border-top:1px solid var(--line);color:var(--dim);fon
 <body>
 <nav><div class="wrap nav-in">
   <a href="#" class="logo">Reel<i>Mela</i></a>
-  <div class="navlinks"><a href="#events">Events</a><a href="#how">How it works</a><a href="#app">App</a><a href="#earn">Earn</a><a href="#build">Build plan · 7 days</a><a href="#pricing">Pricing</a></div>
+  <div class="navlinks"><a href="#events">Events</a><a href="#how">How it works</a><a href="#app">App</a><a href="#earn">Earn</a><a href="#hindi">Hindi Studio</a><a href="#build">Build plan · 7 days</a><a href="#pricing">Pricing</a></div>
   <a href="#join" class="btn btn-accent" style="min-height:42px;padding:9px 18px">Join Harda Launch</a>
 </div></nav>
 
@@ -374,6 +397,166 @@ footer{padding:34px 0 48px;border-top:1px solid var(--line);color:var(--dim);fon
       <div class="field"><label>Your clip watch-time (sec)</label><input type="number" id="yourW" value="1250" min="0" oninput="calc()"><input type="range" id="yourR" min="0" max="5000" step="50" value="1250" oninput="syncRange('yourW','yourR');calc()"></div>
       <div class="switch-row"><label for="proBoost">PRO 1.5× boost</label><input type="checkbox" id="proBoost" onchange="calc()" style="width:22px;height:22px;accent-color:var(--orange)"></div>
       <div class="result-box"><div style="color:var(--dim);font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:.06em">YOU EARN</div><div class="amt" id="earnAmt">₹1,250</div><div id="earnMeta" style="color:var(--muted);font-size:14px;margin-top:6px">12.5% of the pool · 1,250 / 10,000 sec</div></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="hindi"><div class="wrap">
+  <div class="sec-head"><div class="kicker">New · Hindi Studio</div><h2>One reel. Now in Hindi.<br>Five clips from it.</h2><p>Your audience in Harda, Indore and Bhopal thinks, laughs and shares in Hindi. So every ReelMela collab reel now ships with a <strong style="color:#fff">Hindi version</strong> — dubbed voice + burned-in Hindi subtitles — and gets cut into short Hindi clips for Reels, Shorts and WhatsApp Status. Same event, double the audience.</p></div>
+
+  <div class="split" style="align-items:start">
+    <div class="hi-script">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div><h3 style="font-size:21px">Harda College Fest — Collab Reel script</h3><p style="color:var(--muted);font-size:13.5px;margin-top:4px">Tap a language. This is the exact 30-second script, three ways.</p></div>
+        <div class="toggle-row" role="tablist" aria-label="Script language">
+          <button id="langEn" onclick="setLang('en')">English</button><button id="langHi" class="active" onclick="setLang('hi')">हिंदी</button><button id="langHing" onclick="setLang('hing')">Hinglish</button>
+        </div>
+      </div>
+      <div style="margin-top:8px">
+        <div class="script-line"><div class="ts">0:00</div><div><div class="line" data-en="500 people filmed this fest. One reel brought them together." data-hi="500 लोगों ने इस फेस्ट को फिल्माया। एक रील ने सबको जोड़ दिया।" data-hing="500 logon ne is fest ko filmaya. Ek reel ne sabko jod diya.">500 लोगों ने इस फेस्ट को फिल्माया। एक रील ने सबको जोड़ दिया।</div><div class="note">Hook — first 3 seconds decide the swipe</div></div></div>
+        <div class="script-line"><div class="ts">0:08</div><div><div class="line" data-en="42 creators. 128 clips. Every angle of the same night." data-hi="42 क्रिएटर्स। 128 क्लिप्स। एक ही रात, हर एंगल से।" data-hing="42 creators. 128 clips. Ek hi raat, har angle se.">42 क्रिएटर्स। 128 क्लिप्स। एक ही रात, हर एंगल से।</div><div class="note">Middle — the proof it was a real crowd, not one camera</div></div></div>
+        <div class="script-line"><div class="ts">0:21</div><div><div class="line" data-en="Your 20 seconds. 1.2 million views. And everyone gets paid." data-hi="आपके 20 सेकंड। 12 लाख व्यूज़। और कमाई — सबकी।" data-hing="Aapke 20 second. 12 lakh views. Aur kamai — sabki.">आपके 20 सेकंड। 12 लाख व्यूज़। और कमाई — सबकी।</div><div class="note">Close — ends on the Wallet split, with a Join Event button</div></div></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+        <button class="btn btn-accent" style="min-height:44px" onclick="downloadSRT()">Download Hindi subtitles (.srt)</button>
+        <span class="badge" style="align-self:center">DUB + SUBTITLES · 9:16 · 30 SEC</span>
+      </div>
+      <div class="srt-box" style="margin-top:16px" aria-label="Hindi subtitle preview">1
+00:00:00,000 --&gt; 00:00:08,000
+<b>500 लोगों ने इस फेस्ट को फिल्माया।
+एक रील ने सबको जोड़ दिया।</b>
+
+2
+00:00:08,000 --&gt; 00:00:21,000
+<b>42 क्रिएटर्स। 128 क्लिप्स।
+एक ही रात, हर एंगल से।</b>
+
+3
+00:00:21,000 --&gt; 00:00:30,000
+<b>आपके 20 सेकंड। 12 लाख व्यूज़।
+और कमाई — सबकी।</b></div>
+    </div>
+
+    <div class="calc">
+      <h3 style="font-size:22px">Hindi clip planner</h3>
+      <p style="color:var(--muted);font-size:14px;margin:6px 0 20px">Pick a source reel and a moment. You get a ready-to-post Hindi clip plan — title, hook line and format.</p>
+      <div class="field"><label>Source reel</label>
+        <select id="clipSource">
+          <option value="harda">Harda College Fest — Collab Reel (1.2M views)</option>
+          <option value="garba">Indore Garba Night — Collab Reel</option>
+          <option value="bhopal">Bhopal Music Fest — Collab Reel</option>
+        </select>
+      </div>
+      <div class="field"><label>Clip moment</label>
+        <select id="clipMoment">
+          <option value="best">Best moment — the peak of the event</option>
+          <option value="funny">Funny moment — the one people replay</option>
+          <option value="crowd">Crowd moment — pure energy, no talking</option>
+          <option value="money">Money moment — the payout / Wallet shot</option>
+        </select>
+      </div>
+      <div class="field"><label>Clip length</label>
+        <select id="clipLen">
+          <option value="15">15 seconds — WhatsApp Status + Reels</option>
+          <option value="30" selected>30 seconds — Reels + Shorts</option>
+          <option value="60">60 seconds — Shorts with your commentary</option>
+        </select>
+      </div>
+      <button class="btn btn-accent" style="width:100%" onclick="makeClipPlan()">Make my Hindi clip plan</button>
+      <div class="plan-out" id="clipPlanOut">
+        <div class="plan-item"><b>वो पल जब हरदा झूम उठा</b><p>Harda College Fest · Best moment · 30 sec · 9:16 · Hindi dub + burned-in subtitles</p><p class="hook">Hook (first 3 sec, on screen): “रुको — ये रील 128 कैमरों से बनी है!”</p></div>
+      </div>
+      <p style="color:var(--dim);font-size:12.5px;margin-top:14px">Rule for every clip: your Hindi voice / commentary is the main part. The clip supports it — it never replaces it.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size:24px;margin-top:44px">Already cut from the Harda reel</h3>
+  <p style="color:var(--muted);font-size:15px;margin-top:8px;max-width:680px">Three Hindi clips, three different jobs. One night of footage, a week of posting.</p>
+  <div class="clip-cards">
+    <article class="clip-card">
+      <div class="clip-visual ev1"><div style="display:flex;justify-content:space-between"><span class="badge" style="background:#FF6A00;color:#fff;border-color:#FF6A00">CLIP 1 · BEST</span><span class="badge" style="background:rgba(10,10,15,.55);color:#fff">0:30</span></div><div class="big" style="font-family:Archivo;font-weight:900;font-size:26px;line-height:.95">डांस<br>फ़ाइनल</div></div>
+      <div class="clip-body"><h3>वो पल जब हरदा झूम उठा</h3><p><em style="color:var(--dim)">“The moment Harda started dancing.”</em> The dance-final peak, Hindi-dubbed, crowd audio kept under the voice. Posted as Reel + Short.</p><span class="badge" style="align-self:flex-start">JOB — REACH</span></div>
+    </article>
+    <article class="clip-card">
+      <div class="clip-visual ev2"><div style="display:flex;justify-content:space-between"><span class="badge" style="background:#FF2E63;color:#fff;border-color:#FF2E63">CLIP 2 · FUNNY</span><span class="badge" style="background:rgba(10,10,15,.55);color:#fff">0:15</span></div><div class="big" style="font-family:Archivo;font-weight:900;font-size:26px;line-height:.95">होस्ट की<br>गड़बड़</div></div>
+      <div class="clip-body"><h3>होस्ट ने नाम ही गलत बोल दिया</h3><p><em style="color:var(--dim)">“The host said the wrong name.”</em> 15 seconds, made for WhatsApp Status — the format Harda actually forwards.</p><span class="badge" style="align-self:flex-start">JOB — SHARES</span></div>
+    </article>
+    <article class="clip-card">
+      <div class="clip-visual ev3"><div style="display:flex;justify-content:space-between"><span class="badge" style="background:#22C55E;color:#0A0A0F;border-color:#22C55E">CLIP 3 · MONEY</span><span class="badge" style="background:rgba(10,10,15,.55);color:#fff">0:30</span></div><div class="big" style="font-family:Archivo;font-weight:900;font-size:26px;line-height:.95">₹1,250<br>मिले!</div></div>
+      <div class="clip-body"><h3>20 सेकंड की क्लिप, ₹1,250 की कमाई</h3><p><em style="color:var(--dim)">“A 20-second clip earned ₹1,250.”</em> The Wallet payout shot with the split explained in Hindi. This is the clip that recruits the next 30 creators.</p><span class="badge" style="align-self:flex-start">JOB — SIGN-UPS</span></div>
+    </article>
+  </div>
+
+  <div class="split" style="margin-top:44px;align-items:start">
+    <div>
+      <div class="kicker">How a Hindi version gets made</div>
+      <h2 style="font-size:clamp(26px,4vw,36px);margin-top:12px">Four steps. All free.</h2>
+      <div class="feat-list" style="margin-top:10px">
+        <div class="feat-item"><div class="n">01</div><div><h3>Auto-captions in English</h3><p>CapCut: Import → Captions → Auto captions. Fix names and places by hand — auto-captions mangle “Harda” every time.</p></div></div>
+        <div class="feat-item"><div class="n">02</div><div><h3>Translate to Hindi</h3><p>CapCut's Translate turns captions into Hindi (Devanagari). Keep lines short — 2 lines max per screen, or nobody reads them at fest speed.</p></div></div>
+        <div class="feat-item"><div class="n">03</div><div><h3>Add the Hindi voice</h3><p>Best voice is yours: record the Hindi script over the clip in CapCut. Your own dub is also what makes the clip <em>yours</em>, not a re-upload.</p></div></div>
+        <div class="feat-item"><div class="n">04</div><div><h3>Cut 3–5 clips, post across a week</h3><p>Best, funny, crowd, money. One source reel becomes a week of Hindi posts — each one links back to the full collab reel and the event.</p></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="grid3" style="grid-template-columns:1fr;gap:12px">
+        <div class="plain-card"><h3>CapCut — start here, ₹0</h3><p>Free auto-captions + Hindi translate + your own voice dub in one app. No watermark on captions export. The robotic preset voice is the only weak spot — record your own.</p></div>
+        <div class="plain-card"><h3>YouTube auto-dubbing — ₹0</h3><p>Upload the reel as Unlisted, YouTube generates a Hindi audio track viewers can switch to. Zero effort, but you don't control the voice or the wording.</p></div>
+        <div class="plain-card"><h3>HeyGen — lip-sync, with a catch</h3><p>Best lip-sync for a talking-head clip, but the free tier caps out at about 1 minute per video — a 2-minute video does <strong style="color:#fff">not</strong> fit free in one go. Split it, or use CapCut.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="split" style="margin-top:44px;align-items:start">
+    <div class="vs">
+      <h3 style="font-size:22px">Clipping someone else's reel?<br>Ask first. In writing.</h3>
+      <p style="color:var(--muted);font-size:14.5px;margin-top:10px">ReelMela event clips are yours to Hindi-dub — you shot them, or the event pool covers them. But a random creator's YouTube video or reel is <strong style="color:#fff">not</strong> free to clip, famous or not. Credit is not permission. Copy a template, send it, keep their “yes”.</p>
+      <ul class="tick">
+        <li>Only clip: your own footage, written permission, Creative Commons, or YouTube's own Remix tools</li>
+        <li>Your Hindi commentary must be the main part — a straight re-upload can be blocked and won't monetise</li>
+        <li>Always credit + link the original — as courtesy, not as protection</li>
+      </ul>
+    </div>
+    <div>
+      <label>Permission message — English</label>
+      <div class="template-box" id="tplEn">Hi [name], I liked your video “[title]”. Can I use a [30-sec / 1-min] clip of it, dubbed into Hindi with my own commentary, on my YouTube channel [channel name]? I'll credit you and link your original video in the description and pinned comment, and I won't re-upload your full video. Please reply yes or no.</div>
+      <button class="btn btn-line" style="min-height:42px;margin-top:10px" onclick="copyTemplate('tplEn',this)">Copy English message</button>
+      <label style="margin-top:20px">Permission message — हिंदी</label>
+      <div class="template-box" id="tplHi">Namaste [name], mujhe aapki video “[title]” bahut pasand aayi. Kya main iska [30-second / 1-minute] ka clip Hindi me dub karke, apni commentary ke saath, apne YouTube channel [channel name] par use kar sakta/sakti hoon? Main description aur pinned comment me aapko credit doonga/doongi aur aapki original video ka link bhi doonga/doongi. Main aapki poori video dobara upload nahi karoonga/karoongi. Kripya haan ya na me jawab dein.</div>
+      <button class="btn btn-line" style="min-height:42px;margin-top:10px" onclick="copyTemplate('tplHi',this)">Copy Hindi message</button>
+    </div>
+  </div>
+
+  <div class="calc" style="margin-top:44px">
+    <div class="split" style="align-items:start">
+      <div>
+        <h3 style="font-size:22px">Make my Hindi version — production brief</h3>
+        <p style="color:var(--muted);font-size:14px;margin:6px 0 20px">Fill this in for any reel — yours or one you have permission for — and download a one-page brief you can follow in CapCut, step by step.</p>
+        <div class="field"><label>Reel / video title</label><input type="text" id="briefTitle" placeholder="e.g. Harda College Fest — Collab Reel"></div>
+        <div class="field"><label>Whose footage is it?</label>
+          <select id="briefRights">
+            <option>My own / ReelMela event footage</option>
+            <option>Creator gave written permission</option>
+            <option>Creative Commons video</option>
+            <option>YouTube Remix (Shorts tools)</option>
+          </select>
+        </div>
+        <div class="field"><label>Hindi version type</label>
+          <select id="briefType">
+            <option>Hindi subtitles only</option>
+            <option selected>Hindi dub (my voice) + subtitles</option>
+            <option>Hindi dub + subtitles + 3 short clips</option>
+          </select>
+        </div>
+        <button class="btn btn-accent" style="width:100%" onclick="makeBrief()">Generate brief</button>
+      </div>
+      <div>
+        <div class="result-box" style="margin-top:0">
+          <div style="color:var(--dim);font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:.06em">YOUR BRIEF</div>
+          <div id="briefOut" style="font-size:14.5px;line-height:1.65;margin-top:10px;color:#DDD9E8">Pick a title and hit Generate — your step-by-step Hindi version plan lands here, ready to download and follow in CapCut.</div>
+        </div>
+        <button class="btn btn-line" id="briefDl" style="width:100%;margin-top:12px;display:none" onclick="downloadBrief()">Download brief (.txt)</button>
+      </div>
     </div>
   </div>
 </div></section>
@@ -573,6 +756,59 @@ function toggleAllReminders(btn){
   btn.textContent=anyOff?'✓ Reminders set for all 9 blocks':'🔔 Remind me — set reminders for all 9 blocks';
 }
 function joinWaitlist(e){ e.preventDefault(); var s=document.getElementById('wlSuccess'); s.style.display='block'; s.scrollIntoView({behavior:'smooth',block:'center'}); }
+/* HINDI STUDIO */
+function setLang(lang){
+  document.querySelectorAll('.script-line .line').forEach(function(el){ el.textContent=el.getAttribute('data-'+lang); });
+  ['en','hi','hing'].forEach(function(l){
+    var id='lang'+(l==='en'?'En':l==='hi'?'Hi':'Hing');
+    document.getElementById(id).classList.toggle('active', l===lang);
+  });
+}
+var CLIP_DATA={
+  harda:{name:'Harda College Fest — Collab Reel',best:['वो पल जब हरदा झूम उठा','रुको — ये रील 128 कैमरों से बनी है!'],funny:['होस्ट ने नाम ही गलत बोल दिया','नाम गलत, पर वाइब बिल्कुल सही!'],crowd:['128 कैमरे, एक ही धमाका','ये आवाज़ एक फोन की नहीं है!'],money:['20 सेकंड की क्लिप, ₹1,250 की कमाई','देखो — व्यूज़ से पैसे कैसे बने।']},
+  garba:{name:'Indore Garba Night — Collab Reel',best:['जब पूरा सर्कल एक साथ घूमा','2,000 लोग, एक ही बीट!'],funny:['गरबा में जूता किसका उड़ा?','ये वाला पल सबने रिकॉर्ड किया!'],crowd:['इंदौर गरबा — भीड़ का सागर','ऊपर से देखो, क्या नज़ारा है!'],money:['गरबा क्लिप से पहली कमाई','एक रात, एक रील, सबकी कमाई।']},
+  bhopal:{name:'Bhopal Music Fest — Collab Reel',best:['झील किनारे, लाइव म्यूज़िक का जादू','ये गाना भीड़ ने साथ गाया!'],funny:['गिटारिस्ट की तार टूटी, शो नहीं रुका','लाइव में ऐसा ही होता है!'],crowd:['भोपाल झूम उठा — क्राउड वेव','दो स्टेज, एक ही जोश!'],money:['म्यूज़िक फेस्ट क्लिप, असली पेआउट','वॉच-टाइम से वॉलेट तक।']}
+};
+function makeClipPlan(){
+  var src=document.getElementById('clipSource').value;
+  var mom=document.getElementById('clipMoment').value;
+  var len=document.getElementById('clipLen').value;
+  var d=CLIP_DATA[src][mom];
+  var momLabel={best:'Best moment',funny:'Funny moment',crowd:'Crowd moment',money:'Money moment'}[mom];
+  var dest=len==='15'?'WhatsApp Status + Reels':(len==='60'?'Shorts — lead with your Hindi commentary':'Reels + Shorts');
+  document.getElementById('clipPlanOut').innerHTML='<div class="plan-item"><b>'+d[0]+'</b><p>'+CLIP_DATA[src].name+' · '+momLabel+' · '+len+' sec · 9:16 · Hindi dub + burned-in subtitles · Post to: '+dest+'</p><p class="hook">Hook (first 3 sec, on screen): “'+d[1]+'”</p><p style="margin-top:6px">End card: “पूरी रील ReelMela पर — लिंक बायो में” + Join Event button.</p></div>';
+}
+var briefText='';
+function makeBrief(){
+  var title=document.getElementById('briefTitle').value.trim()||'Untitled reel';
+  var rights=document.getElementById('briefRights').value;
+  var type=document.getElementById('briefType').value;
+  briefText='REELMELA — HINDI VERSION BRIEF\n'+
+  'Title: '+title+'\nFootage rights: '+rights+'\nVersion: '+type+'\n\nSTEPS\n'+
+  '1. CapCut: Import video → Captions → Auto captions (English). Fix names/places by hand.\n'+
+  '2. Captions → Translate → Hindi (Devanagari). Max 2 lines per screen.\n'+
+  '3. Record your own Hindi voice-over the clip — your voice is what makes it yours.\n'+
+  '4. Export 9:16 with burned-in Hindi subtitles.\n'+
+  (type.indexOf('clips')>-1?'5. Cut 3 clips (best / funny / money), 15–30 sec each, one post per day.\n':'')+
+  '\nCHECK BEFORE POSTING\n- Footage is mine, permitted, Creative Commons, or a YouTube Remix.\n- My Hindi commentary is the main part of the video.\n- Original creator credited + linked (courtesy, not a licence).';
+  document.getElementById('briefOut').innerHTML=briefText.replace(/\n/g,'<br>');
+  document.getElementById('briefDl').style.display='inline-flex';
+}
+function downloadText(filename, text){
+  var blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click();
+  setTimeout(function(){URL.revokeObjectURL(a.href)},2000);
+}
+function downloadBrief(){ if(briefText) downloadText('reelmela-hindi-brief.txt', briefText); }
+function downloadSRT(){
+  var srt='1\n00:00:00,000 --> 00:00:08,000\n500 लोगों ने इस फेस्ट को फिल्माया।\nएक रील ने सबको जोड़ दिया।\n\n2\n00:00:08,000 --> 00:00:21,000\n42 क्रिएटर्स। 128 क्लिप्स।\nएक ही रात, हर एंगल से।\n\n3\n00:00:21,000 --> 00:00:30,000\nआपके 20 सेकंड। 12 लाख व्यूज़।\nऔर कमाई — सबकी।\n';
+  downloadText('harda-fest-collab-reel-hindi.srt', srt);
+}
+function copyTemplate(id, btn){
+  var text=document.getElementById(id).textContent;
+  function done(){ var old=btn.textContent; btn.textContent='✓ Copied — paste it to the creator'; setTimeout(function(){btn.textContent=old},2200); }
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done).catch(done); } else { done(); }
+}
 calc(); updateProgress();
 </script>
 </body>
