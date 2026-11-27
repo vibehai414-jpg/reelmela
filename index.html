@@ -838,6 +838,7 @@ footer a:hover{color:#fff}
       <button type="submit" class="btn btn-accent">Comment YES — Join Waitlist</button>
     </form>
     <div id="wlSuccess" style="display:none;margin-top:18px;background:#0F2416;border:1px solid #1E4D2E;color:#86EFAC;padding:14px 16px;border-radius:8px;font-weight:600;max-width:640px">YES — you're on the Harda launch list. We'll reach out before the first college fest goes live.</div>
+    <div id="wlError" role="alert" style="display:none;margin-top:18px;background:#2A0E12;border:1px solid #5B1F24;color:#FFB3B8;padding:14px 16px;border-radius:8px;font-weight:600;max-width:640px"></div>
     <p style="color:var(--dim);font-size:13px;margin-top:16px">For creators (16–28) · Event organizers · Local brands in Harda, Indore, Bhopal &amp; Ujjain</p>
   </div>
 </div></section>
@@ -927,6 +928,8 @@ footer a:hover{color:#fff}
 
 <footer aria-label="ReelMela footer"><div class="wrap" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center"><span><strong style="color:#fff">ReelMela</strong> — Don't post alone. Founded in Harda, Madhya Pradesh.</span><span><a href="#legal" style="color:#fff;text-decoration:underline;font-weight:700">Terms, Privacy &amp; Legal</a></span><span>Official email: <a href="mailto:vibehai414@gmail.com" style="color:#fff;text-decoration:underline">vibehai414@gmail.com</a></span><span class="mono" style="font-size:12px">PRO ₹99/EVENT · ORGANIZER GROWTH ₹4,999/EVENT · PILOT ASK ₹50K / 3 EVENTS</span></div></footer>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
 var ticker=document.getElementById('tickerTrack'); ticker.innerHTML+=ticker.innerHTML;
 function setView(mode){
@@ -981,7 +984,60 @@ function toggleAllReminders(btn){
   btn.classList.toggle('on', anyOff);
   btn.textContent=anyOff?'✓ Reminders set for all 9 blocks':'🔔 Remind me — set reminders for all 9 blocks';
 }
-function joinWaitlist(e){ e.preventDefault(); var s=document.getElementById('wlSuccess'); s.style.display='block'; s.scrollIntoView({behavior:'smooth',block:'center'}); }
+/* WAITLIST — Firebase Firestore (project reelmela-82217) */
+var firebaseConfig={
+  apiKey:"AIzaSyAD6aFTJWoOxHu7qV_IOOcEw4fK_YH0B0M",
+  authDomain:"reelmela-82217.firebaseapp.com",
+  projectId:"reelmela-82217",
+  storageBucket:"reelmela-82217.firebasestorage.app",
+  messagingSenderId:"155518655931",
+  appId:"1:155518655931:web:ca918d139a2c17799c389e"
+};
+var wlDb=null;
+function getWaitlistDb(){
+  if(wlDb) return wlDb;
+  if(typeof firebase==='undefined') return null;
+  try{
+    if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    wlDb=firebase.firestore();
+  }catch(err){ return null; }
+  return wlDb;
+}
+function joinWaitlist(e){
+  e.preventDefault();
+  var form=e.target;
+  var name=document.getElementById('wlName').value.trim();
+  var contact=document.getElementById('wlContact').value.trim();
+  var success=document.getElementById('wlSuccess');
+  var errorBox=document.getElementById('wlError');
+  var btn=form.querySelector('button[type=submit]');
+  success.style.display='none'; errorBox.style.display='none'; errorBox.textContent='';
+  function setBusy(busy){
+    if(btn){ btn.disabled=busy; btn.textContent=busy?'Joining…':'Comment YES — Join Waitlist'; }
+  }
+  function showError(msg){
+    setBusy(false);
+    errorBox.textContent=msg;
+    errorBox.style.display='block';
+    errorBox.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  if(!name || !contact){ showError('Please add your name and an email or WhatsApp number, then try again.'); return; }
+  var db=getWaitlistDb();
+  if(!db){ showError('Sorry — the sign-up service could not be reached. Please check your connection and try again, or email us at vibehai414@gmail.com.'); return; }
+  setBusy(true);
+  /* Rules allow create only with name, email and createdAt as strings — the form's
+     "Email or WhatsApp number" value is stored in the email field. */
+  db.collection('waitlist').add({ name:name, email:contact, createdAt:new Date().toISOString() })
+    .then(function(){
+      setBusy(false);
+      form.reset();
+      success.style.display='block';
+      success.scrollIntoView({behavior:'smooth',block:'center'});
+    })
+    .catch(function(err){
+      showError('Sorry — your sign-up could not be saved'+(err && err.code?' ('+err.code+')':'')+'. Please try again, or email us at vibehai414@gmail.com.');
+    });
+}
 /* HINDI STUDIO */
 function setLang(lang){
   document.querySelectorAll('.script-line .line').forEach(function(el){ el.textContent=el.getAttribute('data-'+lang); });
