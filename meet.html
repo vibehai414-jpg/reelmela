@@ -538,6 +538,22 @@ loadMeet();
 <script>
 /* APP SHELL — highlight the active tab */
 (function(){var p=(location.pathname.split('/').pop()||'index.html');document.querySelectorAll('.appbar a').forEach(function(a){if(a.getAttribute('data-tab')===p)a.classList.add('active');});})();
+/* APP SHELL — pin the tab bar to the visible bottom even in webviews where position:fixed misbehaves */
+(function(){
+  var bar=document.querySelector('.appbar'); if(!bar) return;
+  function pin(){
+    var r=bar.getBoundingClientRect();
+    var atBottom=Math.abs(window.innerHeight-r.bottom)<2;
+    if(!atBottom && window.innerWidth<900){
+      bar.style.position='absolute';
+      bar.style.top=(window.scrollY+window.innerHeight-bar.offsetHeight)+'px';
+      bar.style.bottom='auto';
+    }
+  }
+  window.addEventListener('scroll',pin,{passive:true});
+  window.addEventListener('resize',pin);
+  setTimeout(pin,300); setTimeout(pin,1200);
+})();
 /* APP SHELL — service worker (installable app, offline shell) */
 if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/sw.js').catch(function(){});}catch(e){}}
 </script>
