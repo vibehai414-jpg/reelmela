@@ -344,7 +344,7 @@ footer a:hover{color:var(--gold)}
 <body>
 <nav aria-label="Main navigation"><div class="wrap nav-in">
   <a href="index.html" class="logo" aria-label="ReelMela — home"><svg class="logo-wheel" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M20 17 L13 37 M20 17 L27 37" stroke="#51337F" stroke-width="2.5" stroke-linecap="round" fill="none"/><g><animateTransform attributeName="transform" type="rotate" from="0 20 17" to="360 20 17" dur="16s" repeatCount="indefinite"/><circle cx="20" cy="17" r="11" fill="none" stroke="#FFB62E" stroke-width="2.5"/><g stroke="rgba(255,243,214,.65)" stroke-width="1.6"><line x1="20" y1="17" x2="20" y2="6"/><line x1="20" y1="17" x2="29.5" y2="11.5"/><line x1="20" y1="17" x2="29.5" y2="22.5"/><line x1="20" y1="17" x2="20" y2="28"/><line x1="20" y1="17" x2="10.5" y2="22.5"/><line x1="20" y1="17" x2="10.5" y2="11.5"/></g><circle cx="20" cy="17" r="2.6" fill="#FF4D5E"/></g></svg>Reel<i>Mela</i></a>
-  <div class="navlinks"><a href="index.html">Home</a><a href="events.html" class="active" aria-current="page">Events</a><a href="how-it-works.html">How it works</a><a href="earn.html">Earn</a><a href="hindi-studio.html">Hindi Studio</a><a href="mvp.html">MVP</a><a href="pricing.html">Pricing</a><a href="business.html">For Business</a><a href="join.html">Join</a><a href="legal.html">Legal</a></div>
+  <div class="navlinks"><a href="index.html">Home</a><a href="events.html" class="active" aria-current="page">Events</a><a href="how-it-works.html">How it works</a><a href="earn.html">Earn</a><a href="upload.html">Upload</a><a href="hindi-studio.html">Hindi Studio</a><a href="mvp.html">MVP</a><a href="pricing.html">Pricing</a><a href="business.html">For Business</a><a href="join.html">Join</a><a href="legal.html">Legal</a></div>
   <a href="join.html" class="btn btn-accent" style="min-height:42px;padding:9px 18px">Join Harda Launch</a>
 </div></nav>
 
@@ -359,8 +359,10 @@ footer a:hover{color:var(--gold)}
       <div class="event-visual ev1" role="img" aria-label="Harda College Fest event artwork"><div style="display:flex;justify-content:space-between"><span class="badge-live"><span class="live-dot" style="background:#fff"></span> LIVE</span><span class="badge" style="background:rgba(10,10,15,.55);color:#fff">TODAY</span></div><div class="big">HARDA<br>COLLEGE FEST</div></div>
       <div class="event-body">
         <p>Main Ground, Harda · Dance, music &amp; the annual fest crowd. The pilot event — this is where ReelMela proves itself.</p>
-        <div class="ev-meta"><div><b>128 clips</b><small>Uploaded</small></div><div><b>42 creators</b><small>Joined</small></div><div><b>₹10,000</b><small>Prize pool</small></div><div><b>Today · 4 PM</b><small>Date</small></div></div>
-        <a href="join.html" class="btn btn-accent" style="width:100%;margin-top:auto">Join — Harda College Fest</a>
+        <div class="ev-meta"><div><b><span id="cardClips">128</span> clips</b><small>Uploaded</small></div><div><b><span id="cardCreators">42</span> creators</b><small>Joined</small></div><div><b>₹10,000</b><small>Prize pool</small></div><div><b>Today · 4 PM</b><small>Date</small></div></div>
+        <a href="upload.html" class="btn btn-accent" style="width:100%;margin-top:auto">Upload your clip</a>
+        <a href="#harda" class="btn btn-line" style="width:100%;margin-top:10px">View event details ↓</a>
+        <a href="join.html" style="display:block;text-align:center;color:var(--muted);font-weight:700;margin-top:10px">Join the waitlist →</a>
       </div>
     </article>
     <article class="event" aria-label="Indore Garba Night — upcoming ReelMela event in Indore, 15,000 rupee prize pool">
@@ -381,6 +383,16 @@ footer a:hover{color:var(--gold)}
     </article>
   </div>
   <p style="color:var(--dim);font-size:13.5px;margin-top:16px">Ujjain Mela is next on the list. Private events (birthdays, college trips, society functions) join by QR / invite only — your clips stay yours.</p>
+</div></section>
+
+<section id="harda" aria-label="Harda College Fest — event details"><div class="wrap">
+  <div class="sec-head"><div class="kicker">Event detail · Live now</div><h2>Harda College Fest.</h2><p>Main Ground, Harda · Today, 4 PM · Dance, music &amp; the annual fest crowd. The pilot event — this is where ReelMela proves itself.</p></div>
+  <div class="ev-meta" style="margin-bottom:18px"><div><b><span id="evClips">128</span> clips</b><small>Uploaded so far</small></div><div><b><span id="evCreators">42</span> creators</b><small>Joined</small></div><div><b>₹10,000</b><small>Prize pool</small></div><div><b>1.2M views</b><small>Collab reel reach</small></div></div>
+  <div class="cta-box">
+    <p style="margin-top:0">Every clip uploaded here goes into the free aftermovie ReelMela posts tonight — the aftermovie pays ₹0. Earnings come from verified views on the one video you post on your own account, with ReelMela mentioned, tagged and collaged in, plus #HardaCollegeFest — your verified views ÷ total verified views × ₹10,000, capped at ₹3,000 (30%), ₹100 minimum payout.</p>
+    <a href="upload.html" class="btn btn-accent">Upload your clip — 15–30 sec</a>
+    <a href="earn.html" class="btn btn-line" style="margin-left:10px">Check your earnings →</a>
+  </div>
 </div></section>
 
 <div class="lights" aria-hidden="true"></div>
@@ -406,6 +418,41 @@ if(carnivalReduced){ document.querySelectorAll('svg').forEach(function(s){ if(s.
   els.forEach(function(el){ io.observe(el); });
 })();
 
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* LIVE COUNTER — Harda College Fest clips + distinct creators, Firestore 'clips' (project reelmela-82217).
+   Fresh read per load; falls back to the published totals (128 clips, 42 creators) if the read fails. */
+var firebaseConfig={
+  apiKey:"AIzaSyAD6aFTJWoOxHu7qV_IOOcEw4fK_YH0B0M",
+  authDomain:"reelmela-82217.firebaseapp.com",
+  projectId:"reelmela-82217",
+  storageBucket:"reelmela-82217.firebasestorage.app",
+  messagingSenderId:"155518655931",
+  appId:"1:155518655931:web:ca918d139a2c17799c389e"
+};
+var evDb=null;
+function getEvDb(){
+  if(evDb) return evDb;
+  if(typeof firebase==='undefined') return null;
+  try{
+    if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    evDb=firebase.firestore();
+  }catch(err){ return null; }
+  return evDb;
+}
+(function(){
+  var db=getEvDb(); if(!db) return;
+  db.collection('clips').where('event','==','Harda College Fest').get().then(function(snap){
+    var names={};
+    snap.forEach(function(d){ var n=(d.data().creatorName||'').trim().toLowerCase(); if(n) names[n]=1; });
+    var map={evClips:snap.size, evCreators:Object.keys(names).length,
+             cardClips:snap.size, cardCreators:Object.keys(names).length};
+    Object.keys(map).forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent=map[id]; });
+  }).catch(function(){ /* keep published totals */ });
+})();
 </script>
 </body>
 </html>
