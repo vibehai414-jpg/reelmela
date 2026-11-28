@@ -31,12 +31,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reelmela.overc.in/mvp.html</loc>
-    <lastmod>2026-11-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://reelmela.overc.in/pricing.html</loc>
     <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -110,18 +104,6 @@
   </url>
   <url>
     <loc>https://reelmela.overc.in/pro.html</loc>
-    <lastmod>2026-11-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reelmela.overc.in/engine.html</loc>
-    <lastmod>2026-11-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://reelmela.overc.in/launch.html</loc>
     <lastmod>2026-11-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
