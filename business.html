@@ -372,7 +372,7 @@ footer a:hover{color:var(--gold)}
     <div>
       <div class="calc">
         <div style="color:var(--dim);font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:.06em">A SIMPLE EXAMPLE</div>
-        <h3 style="font-size:22px;margin-top:10px">One shop. ₹5,000. 20 creators.</h3>
+        <h3 style="font-size:22px;margin-top:10px">One shop. ₹5,000. 20 rising creators.</h3>
         <ul class="tick" style="margin-top:14px">
           <li>A shop in Harda sets a <b style="color:#fff">₹5,000 budget</b> for one promotion day</li>
           <li><b style="color:#fff">20 local creators</b> visit, film in the shop and post their clips</li>
@@ -382,6 +382,43 @@ footer a:hover{color:var(--gold)}
         <p style="color:var(--muted);font-size:14px;margin-top:16px;border-top:1px solid var(--line);padding-top:14px">Bigger budget, more creators. Same simple idea — for a shop launch in Indore, a store offer in Bhopal, or hype week before a big event.</p>
       </div>
       <div class="plain-card" style="margin-top:16px"><h3>For shops, stalls, cafés, salons &amp; stores</h3><p>If your customers are local, your promotion should be local too. ReelMela creators are from your own city — their followers are your neighbours, students and families.</p></div>
+    </div>
+  </div>
+
+  <div style="margin-top:36px">
+    <div class="sec-head" style="margin-bottom:20px"><div class="kicker">Two kinds of creators · You choose</div><h2 style="font-size:clamp(26px,4vw,38px)">Pick the creators you want to hire.</h2><p>There are two kinds of creators on ReelMela — and the organiser chooses which group to hire. Big reach for maximum views, or small reach for a flood of local creators. Same platform, same verified-views payout.</p></div>
+
+    <div class="grid3" style="grid-template-columns:1fr 1fr">
+      <div class="plain-card" style="border:2px solid var(--gold);background:linear-gradient(180deg,rgba(255,182,46,.12),var(--panel) 55%)"><span class="badge" style="color:var(--gold);border-color:rgba(255,182,46,.5)">★ BIG REACH</span><h3 style="margin-top:14px;font-size:22px">Star creators</h3><p>Creators with a big following — their one post can pull thousands of views on its own. Fewer creators, bigger splash.</p>
+        <ul class="tick">
+          <li>Established creators with large, proven reach</li>
+          <li>Best when you want maximum views, fast — a big launch, a fest going viral beyond the city</li>
+          <li>Premium per creator — you pay for the reach they already have</li>
+        </ul>
+        <p style="color:var(--muted);font-size:14px;margin-top:12px">Hire 3–5 star creators when one big reel matters more than twenty small ones.</p></div>
+      <div class="plain-card" style="border:2px solid var(--teal)"><span class="badge" style="color:#7CF2D3;border-color:rgba(46,211,183,.5)">✦ RISING CREATORS</span><h3 style="margin-top:14px;font-size:22px">Small or no reach — yet</h3><p>Local students and new creators with small followings. They flood your shop or event in numbers — twenty posts in one day, all local.</p>
+        <ul class="tick">
+          <li>Small or no reach, but local — their followers are your neighbours and students</li>
+          <li>Best when you want your shop or event to fill local feeds and bring footfall</li>
+          <li>Budget-friendly — more creators for the same budget, and the event itself grows their reach</li>
+        </ul>
+        <p style="color:var(--muted);font-size:14px;margin-top:12px">Hire 20 rising creators when you want the whole city talking, not one big post.</p></div>
+    </div>
+
+    <div class="calc" style="margin-top:16px">
+      <div style="color:var(--dim);font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:.06em">CHOOSE YOUR GROUP — THEN TELL US</div>
+      <h3 style="font-size:22px;margin-top:10px">Which group do you want to hire?</h3>
+      <div class="toggle-row" style="margin-top:14px" role="group" aria-label="Creator group">
+        <button type="button" id="grpBig" onclick="pickGroup('big')">★ Big reach</button>
+        <button type="button" id="grpSmall" class="active" onclick="pickGroup('small')">✦ Rising creators</button>
+        <button type="button" id="grpBoth" onclick="pickGroup('both')">Both groups</button>
+      </div>
+      <div style="display:grid;gap:12px;margin-top:16px">
+        <div class="field" style="margin:0"><label for="hireBudget">Your budget (₹)</label><input type="number" id="hireBudget" min="1000" step="500" value="5000" inputmode="numeric"></div>
+        <div class="field" style="margin:0"><label for="hirePlace">Shop / event name</label><input type="text" id="hirePlace" placeholder="e.g. Harda College Fest or Sharma Sweets, Harda"></div>
+      </div>
+      <p id="hireHint" style="color:var(--muted);font-size:14px;margin-top:14px">Rising creators: ₹5,000 hires about 20 creators — a full local flood for one day.</p>
+      <div class="cta-row"><a href="#" id="hireBtn" class="btn btn-accent" onclick="return sendHire()">Hire this group — send request</a><span class="badge" style="align-self:center">Replies from vibehai414@gmail.com</span></div>
     </div>
   </div>
 
@@ -404,6 +441,26 @@ footer a:hover{color:var(--gold)}
 
 <script>
 var ticker=document.getElementById('tickerTrack'); ticker.innerHTML+=ticker.innerHTML;
+/* Creator-group picker — mailto only, nothing is saved */
+var hireGroup='small';
+var hireHints={
+  big:'Big reach: fewer creators, premium per creator — ₹5,000 hires about 3–5 star creators for one big splash.',
+  small:'Rising creators: ₹5,000 hires about 20 creators — a full local flood for one day.',
+  both:'Both groups: mix a few star creators for views with rising creators for the local flood — tell us your split in the email.'
+};
+function pickGroup(g){
+  hireGroup=g;
+  ['big','small','both'].forEach(function(k){ document.getElementById('grp'+k.charAt(0).toUpperCase()+k.slice(1)).classList.toggle('active', k===g); });
+  document.getElementById('hireHint').textContent=hireHints[g];
+}
+function sendHire(){
+  var labels={big:'Big reach (star creators)',small:'Rising creators (small/no reach)',both:'Both groups'};
+  var budget=document.getElementById('hireBudget').value||'';
+  var place=document.getElementById('hirePlace').value||'';
+  var body='Hi ReelMela,\n\nI want to hire creators for: '+(place||'(not filled in)')+'\nCreator group: '+labels[hireGroup]+'\nBudget: Rs '+budget+'\n\nPlease tell me the creators available and the next step.\n';
+  window.location.href='mailto:vibehai414@gmail.com?subject='+encodeURIComponent('Hire creators — '+labels[hireGroup])+'&body='+encodeURIComponent(body);
+  return false;
+}
 /* CARNIVAL layer — confetti, ticket stamp, scroll reveal (visual only) */
 var carnivalReduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(carnivalReduced){ document.querySelectorAll('svg').forEach(function(s){ if(s.pauseAnimations) s.pauseAnimations(); }); }
