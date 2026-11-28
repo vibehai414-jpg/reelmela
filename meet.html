@@ -374,7 +374,6 @@ footer a:hover{color:var(--gold)}
     <p style="color:var(--dim);font-size:13px;margin-top:14px">Opting in sets meetOptIn on your profile. You can opt out any time from your profile page.</p>
   </div>
   <div id="meetList" class="clip-cards" style="margin-top:20px"><p style="color:var(--muted);font-weight:700">Loading opted-in creators…</p></div>
-<p style="color:var(--dim);font-size:13px;margin-top:14px">Note: saving here needs the Firestore rules for this collection to be published in the Firebase console. If you see a “permission denied” message, the rules for that collection are not live yet — the waitlist and clips rules are already live.</p>
 
 </div></section>
 <div class="lights" aria-hidden="true"></div>
@@ -539,6 +538,8 @@ loadMeet();
 <script>
 /* APP SHELL — highlight the active tab */
 (function(){var p=(location.pathname.split('/').pop()||'index.html');document.querySelectorAll('.appbar a').forEach(function(a){if(a.getAttribute('data-tab')===p)a.classList.add('active');});})();
+/* APP SHELL — service worker (installable app, offline shell) */
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/sw.js').catch(function(){});}catch(e){}}
 </script>
 
 </body>

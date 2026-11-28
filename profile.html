@@ -380,7 +380,6 @@ footer a:hover{color:var(--gold)}
     <div id="profOk" style="display:none;margin-top:18px;background:#0F2416;border:1px solid #1E4D2E;color:#86EFAC;padding:14px 16px;border-radius:8px;font-weight:600"></div>
     <p style="color:var(--dim);font-size:13px;margin-top:16px">Your profile is saved in Firestore (collection “profiles”). Your photo goes to Cloudinary (folder reelmela-profiles) — free, no card.</p>
   </div>
-<p style="color:var(--dim);font-size:13px;margin-top:14px">Note: saving here needs the Firestore rules for this collection to be published in the Firebase console. If you see a “permission denied” message, the rules for that collection are not live yet — the waitlist and clips rules are already live.</p>
 
 </div></section>
 <div class="lights" aria-hidden="true"></div>
@@ -536,6 +535,8 @@ loadProfile();
 <script>
 /* APP SHELL — highlight the active tab */
 (function(){var p=(location.pathname.split('/').pop()||'index.html');document.querySelectorAll('.appbar a').forEach(function(a){if(a.getAttribute('data-tab')===p)a.classList.add('active');});})();
+/* APP SHELL — service worker (installable app, offline shell) */
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/sw.js').catch(function(){});}catch(e){}}
 </script>
 
 </body>

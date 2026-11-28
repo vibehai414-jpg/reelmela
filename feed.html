@@ -373,7 +373,6 @@ footer a:hover{color:var(--gold)}
   </div>
   <div id="feedList" class="clip-cards"><p style="color:var(--muted);font-weight:700">Loading clips…</p></div>
   <div id="feedNote" style="margin-top:18px"></div>
-<p style="color:var(--dim);font-size:13px;margin-top:14px">Note: saving here needs the Firestore rules for this collection to be published in the Firebase console. If you see a “permission denied” message, the rules for that collection are not live yet — the waitlist and clips rules are already live.</p>
 
 </div></section>
 <div class="lights" aria-hidden="true"></div>
@@ -521,11 +520,16 @@ document.querySelectorAll('.chip').forEach(function(ch){
   var db=getDb();
   var list=document.getElementById('feedList');
   if(!db){ list.innerHTML='<div class="plain-card"><h3>Feed could not load</h3><p style="color:var(--muted)">Please check your connection and refresh.</p></div>'; return; }
+  var done=false;
+  var emptyHtml='<div class="plain-card"><h3>No clips here yet</h3><p style="color:var(--muted)">Be the first — <a href="upload.html" style="color:#fff;text-decoration:underline">upload a 15–30 sec clip</a> and it shows up in this feed.</p></div>';
+  var timer=setTimeout(function(){ if(!done){ done=true; list.innerHTML=emptyHtml; } },3000);
   db.collection('clips').orderBy('createdAt','desc').limit(50).get().then(function(snap){
+    if(done) return; done=true; clearTimeout(timer);
     feedClips=[];
     snap.forEach(function(d){ var v=d.data()||{}; v.id=d.id; feedClips.push(v); });
     feedRender('all');
   }).catch(function(){
+    if(done) return; done=true; clearTimeout(timer);
     list.innerHTML='<div class="plain-card"><h3>Feed could not load</h3><p style="color:var(--muted)">The clips list is not readable yet — the “clips” read rule may not be published. Meanwhile, <a href="upload.html" style="color:#fff;text-decoration:underline">upload the first clip →</a></p></div>';
   });
 })();
@@ -552,6 +556,8 @@ document.querySelectorAll('.chip').forEach(function(ch){
 <script>
 /* APP SHELL — highlight the active tab */
 (function(){var p=(location.pathname.split('/').pop()||'index.html');document.querySelectorAll('.appbar a').forEach(function(a){if(a.getAttribute('data-tab')===p)a.classList.add('active');});})();
+/* APP SHELL — service worker (installable app, offline shell) */
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/sw.js').catch(function(){});}catch(e){}}
 </script>
 
 </body>

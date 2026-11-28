@@ -595,6 +595,8 @@ loadClipCounts();
 <script>
 /* APP SHELL — highlight the active tab */
 (function(){var p=(location.pathname.split('/').pop()||'index.html');document.querySelectorAll('.appbar a').forEach(function(a){if(a.getAttribute('data-tab')===p)a.classList.add('active');});})();
+/* APP SHELL — service worker (installable app, offline shell) */
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/sw.js').catch(function(){});}catch(e){}}
 </script>
 
 </body>
