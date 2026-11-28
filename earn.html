@@ -395,7 +395,23 @@ footer a:hover{color:var(--gold)}
     <div id="ppErr" role="alert" style="display:none;margin-top:14px;background:#2A0E12;border:1px solid #5B1F24;color:#FFB3B8;padding:14px 16px;border-radius:8px;font-weight:600"></div>
     <div id="ppList" style="margin-top:16px"></div>
     <button type="button" class="btn btn-solid" id="ppUseTotals" style="margin-top:12px">Use saved totals in the calculator ↓</button>
-    <p style="color:var(--dim);font-size:13px;margin-top:12px">Saving here needs the “payoutPosts” Firestore rules to be published. If you see a permission error, the rules are not live yet.</p>
+  <div class="plain-card" style="margin-top:20px" id="referBox">
+    <h3>Bring us an event, earn a bonus</h3>
+    <p style="color:var(--muted);font-size:14px;margin:8px 0 16px">Know a college fest, a shop, or an organiser who should be on ReelMela? Recommend them — when the event books, <b style="color:#fff">you get a flat ₹500 commission on that event</b>, paid to your Wallet by UPI along with your other earnings. It comes out of the organiser fee, not out of the creators' ₹10,000 pool — nobody's share gets smaller because you referred.</p>
+    <ul class="tick">
+      <li><b style="color:#fff">1.</b> You recommend an organisation or event — fest, shop opening, sale, college function</li>
+      <li><b style="color:#fff">2.</b> We talk to them and the event books on ReelMela</li>
+      <li><b style="color:#fff">3.</b> You get <b style="color:#fff">₹500 flat</b> for that event — no cap on how many events you refer</li>
+    </ul>
+    <form id="refForm" class="waitlist" style="margin-top:16px" onsubmit="return sendReferral(event)">
+      <div class="field"><label>Your name</label><input type="text" id="refName" required></div>
+      <div class="field"><label>Organisation / event name</label><input type="text" id="refOrg" placeholder="e.g. Harda College Fest or Sharma Sweets" required></div>
+      <div class="field"><label>Organiser's contact (phone or Instagram)</label><input type="text" id="refContact" required></div>
+      <div class="field"><label>Event date (if known)</label><input type="text" id="refDate" placeholder="e.g. 12 Dec 2026"></div>
+      <button type="submit" class="btn btn-accent">Send my referral</button>
+    </form>
+    <p style="color:var(--dim);font-size:13px;margin-top:12px">The ₹500 is paid after the event is booked and confirmed. One referral, one bonus — refer 5 events, earn ₹2,500.</p>
+  </div>
   </div>
 </div></section>
 
@@ -426,6 +442,17 @@ function calc(){
   var yr=document.getElementById('yourR'); if(yr && document.activeElement!==yr) yr.value=Math.min(60000,yours);
 }
 calc();
+/* Event referral — mailto only, nothing is saved */
+function sendReferral(e){
+  e.preventDefault();
+  var name=document.getElementById('refName').value||'';
+  var org=document.getElementById('refOrg').value||'';
+  var contact=document.getElementById('refContact').value||'';
+  var date=document.getElementById('refDate').value||'not known yet';
+  var body='Hi ReelMela,\n\nI am referring an event / organisation:\n\nReferred by (creator): '+name+'\nOrganisation / event: '+org+'\nOrganiser contact: '+contact+'\nEvent date: '+date+'\n\nPlease confirm my flat Rs 500 referral commission once the event books.';
+  window.location.href='mailto:vibehai414@gmail.com?subject='+encodeURIComponent('Event referral — '+org+' (by '+name+')')+'&body='+encodeURIComponent(body);
+  return false;
+}
 /* CARNIVAL layer — confetti, ticket stamp, scroll reveal (visual only) */
 var carnivalReduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(carnivalReduced){ document.querySelectorAll('svg').forEach(function(s){ if(s.pauseAnimations) s.pauseAnimations(); }); }
