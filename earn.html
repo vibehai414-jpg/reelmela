@@ -110,7 +110,7 @@ nav{position:sticky;top:0;z-index:60;background:rgba(21,10,38,.9);backdrop-filte
 .logo-wheel{width:27px;height:27px;margin-right:8px;flex-shrink:0;display:block}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes spinRev{to{transform:rotate(-360deg)}}
-.navlinks{display:none;gap:24px;font-size:13.5px;font-weight:700;color:var(--muted)}
+.navlinks{display:none;gap:24px;flex-wrap:wrap;row-gap:6px;font-size:13.5px;font-weight:700;color:var(--muted)}
 .navlinks a:hover{color:var(--gold)}
 @media(min-width:900px){.navlinks{display:flex}}
 /* TICKER */
@@ -344,7 +344,7 @@ footer a:hover{color:var(--gold)}
 <body>
 <nav aria-label="Main navigation"><div class="wrap nav-in">
   <a href="index.html" class="logo" aria-label="ReelMela — home"><svg class="logo-wheel" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M20 17 L13 37 M20 17 L27 37" stroke="#51337F" stroke-width="2.5" stroke-linecap="round" fill="none"/><g><animateTransform attributeName="transform" type="rotate" from="0 20 17" to="360 20 17" dur="16s" repeatCount="indefinite"/><circle cx="20" cy="17" r="11" fill="none" stroke="#FFB62E" stroke-width="2.5"/><g stroke="rgba(255,243,214,.65)" stroke-width="1.6"><line x1="20" y1="17" x2="20" y2="6"/><line x1="20" y1="17" x2="29.5" y2="11.5"/><line x1="20" y1="17" x2="29.5" y2="22.5"/><line x1="20" y1="17" x2="20" y2="28"/><line x1="20" y1="17" x2="10.5" y2="22.5"/><line x1="20" y1="17" x2="10.5" y2="11.5"/></g><circle cx="20" cy="17" r="2.6" fill="#FF4D5E"/></g></svg>Reel<i>Mela</i></a>
-  <div class="navlinks"><a href="index.html">Home</a><a href="events.html">Events</a><a href="how-it-works.html">How it works</a><a href="earn.html" class="active" aria-current="page">Earn</a><a href="upload.html">Upload</a><a href="hindi-studio.html">Hindi Studio</a><a href="mvp.html">MVP</a><a href="pricing.html">Pricing</a><a href="business.html">For Business</a><a href="join.html">Join</a><a href="legal.html">Legal</a></div>
+  <div class="navlinks"><a href="index.html">Home</a><a href="events.html">Events</a><a href="how-it-works.html">How it works</a><a href="earn.html" class="active" aria-current="page">Earn</a><a href="upload.html">Upload</a><a href="feed.html">Feed</a><a href="aftermovie.html">Aftermovie</a><a href="wallet.html">Wallet</a><a href="leaderboard.html">Leaderboard</a><a href="meet.html">Meet</a><a href="pro.html">PRO</a><a href="engine.html">Engine</a><a href="launch.html">Launch</a><a href="hindi-studio.html">Hindi Studio</a><a href="mvp.html">MVP</a><a href="pricing.html">Pricing</a><a href="business.html">For Business</a><a href="auth.html">Sign in</a><a href="profile.html">Profile</a><a href="join.html">Join</a><a href="legal.html">Legal</a></div>
   <a href="join.html" class="btn btn-accent" style="min-height:42px;padding:9px 18px">Join Harda Launch</a>
 </div></nav>
 
@@ -379,6 +379,23 @@ footer a:hover{color:var(--gold)}
       <div class="result-box"><div style="color:var(--dim);font-size:12px;font-weight:700;font-family:'JetBrains Mono',monospace;letter-spacing:.06em">YOU EARN</div><div class="amt" id="earnAmt">₹1,667</div><div id="earnMeta" style="color:var(--muted);font-size:14px;margin-top:6px">16.7% of verified views · 10,000 / 60,000 views</div></div>
       <p style="color:var(--dim);font-size:12.5px;margin-top:12px">Cap: 30% of the pool — ₹3,000 on a ₹10,000 pool, PRO boost included. Minimum payout ₹100: below that, your earning rolls over to the next event.</p>
     </div>
+  </div>
+
+  <div class="plain-card" style="margin-top:20px" id="payoutPostsBox">
+    <h3>Add your payout post</h3>
+    <p style="color:var(--muted);font-size:14px;margin:8px 0 16px">Payout runs on <b style="color:#fff">one video you post on your own account</b> — ReelMela mentioned, tagged &amp; collaged in, with the event hashtag. Paste that post’s link and its verified views here. Views are verified on your own account before payout.</p>
+    <form id="ppForm" class="waitlist" onsubmit="savePayoutPost(event)">
+      <div class="field"><label>Your name</label><input type="text" id="ppName" required></div>
+      <div class="field"><label>Your payout-post link</label><input type="url" id="ppUrl" placeholder="https://www.instagram.com/reel/…" required></div>
+      <div class="field"><label>Verified views on that post</label><input type="number" id="ppViews" min="0" required></div>
+      <div class="field"><label>Event</label><select id="ppEvent"><option>Harda College Fest</option><option>Indore Garba Night</option><option>Bhopal Music Fest</option></select></div>
+      <button type="submit" class="btn btn-accent">Save my payout post</button>
+    </form>
+    <div id="ppOk" style="display:none;margin-top:14px;background:#0F2416;border:1px solid #1E4D2E;color:#86EFAC;padding:14px 16px;border-radius:8px;font-weight:600"></div>
+    <div id="ppErr" role="alert" style="display:none;margin-top:14px;background:#2A0E12;border:1px solid #5B1F24;color:#FFB3B8;padding:14px 16px;border-radius:8px;font-weight:600"></div>
+    <div id="ppList" style="margin-top:16px"></div>
+    <button type="button" class="btn btn-solid" id="ppUseTotals" style="margin-top:12px">Use saved totals in the calculator ↓</button>
+    <p style="color:var(--dim);font-size:13px;margin-top:12px">Saving here needs the “payoutPosts” Firestore rules to be published. If you see a permission error, the rules are not live yet.</p>
   </div>
 </div></section>
 
@@ -426,6 +443,96 @@ if(carnivalReduced){ document.querySelectorAll('svg').forEach(function(s){ if(s.
   },{threshold:.1});
   els.forEach(function(el){ io.observe(el); });
 })();
+
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+
+/* Shared Firestore helper — project reelmela-82217 (Spark, no Blaze) */
+var firebaseConfig={
+  apiKey:"AIzaSyAD6aFTJWoOxHu7qV_IOOcEw4fK_YH0B0M",
+  authDomain:"reelmela-82217.firebaseapp.com",
+  projectId:"reelmela-82217",
+  storageBucket:"reelmela-82217.firebasestorage.app",
+  messagingSenderId:"155518655931",
+  appId:"1:155518655931:web:ca918d139a2c17799c389e"
+};
+var _db=null;
+function getDb(){
+  if(_db) return _db;
+  if(typeof firebase==='undefined') return null;
+  try{ if(!firebase.apps.length) firebase.initializeApp(firebaseConfig); _db=firebase.firestore(); }
+  catch(err){ return null; }
+  return _db;
+}
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function fmtRs(n){ return '₹'+Math.round(n).toLocaleString('en-IN'); }
+function burstConfetti(x,y){
+  if(carnivalReduced) return;
+  var colors=['#FF4D5E','#FFB62E','#2ED3B7','#FF5DA2','#FFF3D6','#FF7A29'];
+  for(var i=0;i<28;i++){
+    var s=document.createElement('span'); s.className='confetti';
+    s.style.background=colors[i%colors.length]; s.style.left=x+'px'; s.style.top=y+'px';
+    document.body.appendChild(s);
+    var ang=Math.random()*Math.PI*2, v=90+Math.random()*170;
+    var dx=Math.cos(ang)*v, dy=Math.sin(ang)*v-130;
+    var anim=s.animate([
+      {transform:'translate(0,0) rotate(0deg)',opacity:1},
+      {transform:'translate('+dx+'px,'+(dy+330)+'px) rotate('+(Math.random()*560-280)+'deg)',opacity:0}
+    ],{duration:1150+Math.random()*550,easing:'cubic-bezier(.2,.7,.3,1)'});
+    (function(el,a){ a.onfinish=function(){ el.remove(); }; })(s,anim);
+  }
+}
+
+/* PAYOUT POSTS — Firestore 'payoutPosts' (project reelmela-82217) */
+function savePayoutPost(e){
+  e.preventDefault();
+  var ok=document.getElementById('ppOk'), err=document.getElementById('ppErr');
+  ok.style.display='none'; err.style.display='none';
+  var v={creatorName:document.getElementById('ppName').value.trim(),
+    postUrl:document.getElementById('ppUrl').value.trim(),
+    views:parseFloat(document.getElementById('ppViews').value)||0,
+    event:document.getElementById('ppEvent').value, createdAt:new Date().toISOString()};
+  if(!v.creatorName||!v.postUrl){ err.textContent='Please add your name and the post link.'; err.style.display='block'; return; }
+  var db=getDb();
+  if(!db){ err.textContent='Could not reach the service. Please check your connection.'; err.style.display='block'; return; }
+  db.collection('payoutPosts').add(v).then(function(){
+    ok.textContent='Payout post saved — '+v.views.toLocaleString('en-IN')+' verified views for '+v.event+'.'; ok.style.display='block';
+    document.getElementById('ppForm').reset(); loadPayoutPosts();
+  }).catch(function(er){ err.textContent='Could not save the payout post'+(er&&er.code?' ('+er.code+')':'')+'. The “payoutPosts” rules may not be published yet.'; err.style.display='block'; });
+}
+function loadPayoutPosts(){
+  var list=document.getElementById('ppList'); if(!list) return;
+  var db=getDb();
+  if(!db){ list.innerHTML=''; return; }
+  db.collection('payoutPosts').orderBy('createdAt','desc').limit(20).get().then(function(snap){
+    var html='';
+    snap.forEach(function(d){ var v=d.data()||{};
+      html+='<p style="color:var(--muted)">• <b style="color:#fff">'+esc(v.creatorName||'')+'</b> — '+esc(v.event||'')+' — '+(v.views||0).toLocaleString('en-IN')+' verified views — <a href="'+esc(v.postUrl||'#')+'" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">post ↗</a></p>';
+    });
+    list.innerHTML=html||'<p style="color:var(--dim);font-size:13.5px">No payout posts saved yet — be the first.</p>';
+  }).catch(function(){ list.innerHTML=''; });
+}
+document.getElementById('ppUseTotals').addEventListener('click',function(){
+  var db=getDb();
+  if(!db){ alert('Could not reach the service.'); return; }
+  var myName=document.getElementById('ppName').value.trim();
+  db.collection('payoutPosts').get().then(function(snap){
+    var total=0, mine=0;
+    snap.forEach(function(d){ var v=d.data()||{}; total+=(v.views||0);
+      if(myName && (v.creatorName||'').trim().toLowerCase()===myName.toLowerCase()) mine+=(v.views||0);
+    });
+    if(total>0){
+      document.getElementById('totalV').value=total;
+      if(mine>0) document.getElementById('yourV').value=mine;
+      calc();
+      document.getElementById('ppOk').style.display='block';
+      document.getElementById('ppOk').textContent='Calculator updated from saved posts — '+total.toLocaleString('en-IN')+' total verified views'+(mine>0?', '+mine.toLocaleString('en-IN')+' of them yours':'')+'.';
+    } else { alert('No payout posts saved yet.'); }
+  }).catch(function(){ alert('Could not load saved posts — the “payoutPosts” rules may not be published yet.'); });
+});
+loadPayoutPosts();
 
 </script>
 </body>

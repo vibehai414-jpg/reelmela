@@ -110,7 +110,7 @@ nav{position:sticky;top:0;z-index:60;background:rgba(21,10,38,.9);backdrop-filte
 .logo-wheel{width:27px;height:27px;margin-right:8px;flex-shrink:0;display:block}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes spinRev{to{transform:rotate(-360deg)}}
-.navlinks{display:none;gap:24px;font-size:13.5px;font-weight:700;color:var(--muted)}
+.navlinks{display:none;gap:24px;flex-wrap:wrap;row-gap:6px;font-size:13.5px;font-weight:700;color:var(--muted)}
 .navlinks a:hover{color:var(--gold)}
 @media(min-width:900px){.navlinks{display:flex}}
 /* TICKER */
@@ -344,7 +344,7 @@ footer a:hover{color:var(--gold)}
 <body>
 <nav aria-label="Main navigation"><div class="wrap nav-in">
   <a href="index.html" class="logo" aria-label="ReelMela — home"><svg class="logo-wheel" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M20 17 L13 37 M20 17 L27 37" stroke="#51337F" stroke-width="2.5" stroke-linecap="round" fill="none"/><g><animateTransform attributeName="transform" type="rotate" from="0 20 17" to="360 20 17" dur="16s" repeatCount="indefinite"/><circle cx="20" cy="17" r="11" fill="none" stroke="#FFB62E" stroke-width="2.5"/><g stroke="rgba(255,243,214,.65)" stroke-width="1.6"><line x1="20" y1="17" x2="20" y2="6"/><line x1="20" y1="17" x2="29.5" y2="11.5"/><line x1="20" y1="17" x2="29.5" y2="22.5"/><line x1="20" y1="17" x2="20" y2="28"/><line x1="20" y1="17" x2="10.5" y2="22.5"/><line x1="20" y1="17" x2="10.5" y2="11.5"/></g><circle cx="20" cy="17" r="2.6" fill="#FF4D5E"/></g></svg>Reel<i>Mela</i></a>
-  <div class="navlinks"><a href="index.html">Home</a><a href="events.html" class="active" aria-current="page">Events</a><a href="how-it-works.html">How it works</a><a href="earn.html">Earn</a><a href="upload.html">Upload</a><a href="hindi-studio.html">Hindi Studio</a><a href="mvp.html">MVP</a><a href="pricing.html">Pricing</a><a href="business.html">For Business</a><a href="join.html">Join</a><a href="legal.html">Legal</a></div>
+  <div class="navlinks"><a href="index.html">Home</a><a href="events.html" class="active" aria-current="page">Events</a><a href="how-it-works.html">How it works</a><a href="earn.html">Earn</a><a href="upload.html">Upload</a><a href="feed.html">Feed</a><a href="aftermovie.html">Aftermovie</a><a href="wallet.html">Wallet</a><a href="leaderboard.html">Leaderboard</a><a href="meet.html">Meet</a><a href="pro.html">PRO</a><a href="engine.html">Engine</a><a href="launch.html">Launch</a><a href="hindi-studio.html">Hindi Studio</a><a href="mvp.html">MVP</a><a href="pricing.html">Pricing</a><a href="business.html">For Business</a><a href="auth.html">Sign in</a><a href="profile.html">Profile</a><a href="join.html">Join</a><a href="legal.html">Legal</a></div>
   <a href="join.html" class="btn btn-accent" style="min-height:42px;padding:9px 18px">Join Harda Launch</a>
 </div></nav>
 
@@ -392,6 +392,25 @@ footer a:hover{color:var(--gold)}
     <p style="margin-top:0">Every clip uploaded here goes into the free aftermovie ReelMela posts tonight — the aftermovie pays ₹0. Earnings come from verified views on the one video you post on your own account, with ReelMela mentioned, tagged and collaged in, plus #HardaCollegeFest — your verified views ÷ total verified views × ₹10,000, capped at ₹3,000 (30%), ₹100 minimum payout.</p>
     <a href="upload.html" class="btn btn-accent">Upload your clip — 15–30 sec</a>
     <a href="earn.html" class="btn btn-line" style="margin-left:10px">Check your earnings →</a>
+  </div>
+</div></section>
+
+
+<section id="all-events" aria-label="All ReelMela events — live list and create event"><div class="wrap">
+  <div class="sec-head"><div class="kicker">All events · Live list</div><h2>Every event, in one place.</h2><p>Events added by organizers show up here. Public events anyone can join; private events by QR / invite only.</p></div>
+  <div id="evList" class="events"><p style="color:var(--muted);font-weight:700">Loading events…</p></div>
+  <div class="plain-card" style="margin-top:20px">
+    <h3>Create an event — under 2 minutes</h3>
+    <form id="evForm" class="waitlist" onsubmit="createEvent(event)">
+      <div class="field"><label>Event name</label><input type="text" id="evName" placeholder="e.g. Harda College Fest" required></div>
+      <div class="field"><label>Date &amp; time</label><input type="text" id="evDate" placeholder="e.g. Sat, 4 PM" required></div>
+      <div class="field"><label>Venue</label><input type="text" id="evVenue" placeholder="e.g. Main Ground, Harda" required></div>
+      <div class="field"><label>Public or private?</label><select id="evVis"><option value="public">Public — anyone can join</option><option value="private">Private — QR / invite only</option></select></div>
+      <div class="field"><label>Prize pool (₹)</label><input type="number" id="evPool" value="10000" min="0" required></div>
+      <button type="submit" class="btn btn-accent">Create event</button>
+    </form>
+    <div id="evOk" style="display:none;margin-top:14px;background:#0F2416;border:1px solid #1E4D2E;color:#86EFAC;padding:14px 16px;border-radius:8px;font-weight:600"></div>
+    <div id="evErr" role="alert" style="display:none;margin-top:14px;background:#2A0E12;border:1px solid #5B1F24;color:#FFB3B8;padding:14px 16px;border-radius:8px;font-weight:600"></div>
   </div>
 </div></section>
 
@@ -453,6 +472,89 @@ function getEvDb(){
     Object.keys(map).forEach(function(id){ var el=document.getElementById(id); if(el) el.textContent=map[id]; });
   }).catch(function(){ /* keep published totals */ });
 })();
+</script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+
+/* Shared Firestore helper — project reelmela-82217 (Spark, no Blaze) */
+var firebaseConfig={
+  apiKey:"AIzaSyAD6aFTJWoOxHu7qV_IOOcEw4fK_YH0B0M",
+  authDomain:"reelmela-82217.firebaseapp.com",
+  projectId:"reelmela-82217",
+  storageBucket:"reelmela-82217.firebasestorage.app",
+  messagingSenderId:"155518655931",
+  appId:"1:155518655931:web:ca918d139a2c17799c389e"
+};
+var _db=null;
+function getDb(){
+  if(_db) return _db;
+  if(typeof firebase==='undefined') return null;
+  try{ if(!firebase.apps.length) firebase.initializeApp(firebaseConfig); _db=firebase.firestore(); }
+  catch(err){ return null; }
+  return _db;
+}
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function fmtRs(n){ return '₹'+Math.round(n).toLocaleString('en-IN'); }
+function burstConfetti(x,y){
+  if(carnivalReduced) return;
+  var colors=['#FF4D5E','#FFB62E','#2ED3B7','#FF5DA2','#FFF3D6','#FF7A29'];
+  for(var i=0;i<28;i++){
+    var s=document.createElement('span'); s.className='confetti';
+    s.style.background=colors[i%colors.length]; s.style.left=x+'px'; s.style.top=y+'px';
+    document.body.appendChild(s);
+    var ang=Math.random()*Math.PI*2, v=90+Math.random()*170;
+    var dx=Math.cos(ang)*v, dy=Math.sin(ang)*v-130;
+    var anim=s.animate([
+      {transform:'translate(0,0) rotate(0deg)',opacity:1},
+      {transform:'translate('+dx+'px,'+(dy+330)+'px) rotate('+(Math.random()*560-280)+'deg)',opacity:0}
+    ],{duration:1150+Math.random()*550,easing:'cubic-bezier(.2,.7,.3,1)'});
+    (function(el,a){ a.onfinish=function(){ el.remove(); }; })(s,anim);
+  }
+}
+
+/* EVENTS LIST + CREATE — Firestore 'events' (project reelmela-82217) */
+var BUILTIN=[
+  {name:'Harda College Fest',date:'Today · 4 PM',venue:'Main Ground, Harda',pool:10000,status:'LIVE'},
+  {name:'Indore Garba Night',date:'Friday · 7 PM',venue:'Indore',pool:15000,status:'UPCOMING'},
+  {name:'Bhopal Music Fest',date:'Next Sat · 5 PM',venue:'Bhopal',pool:25000,status:'UPCOMING'}
+];
+function evCard(v){
+  return '<article class="event"><div class="event-body"><h3>'+esc(v.name)+'</h3>'
+    +'<p>'+esc(v.venue||'')+' · '+esc(v.date||'')+'</p>'
+    +'<div class="ev-meta"><div><b>'+esc(v.status||'UPCOMING')+'</b><small>Status</small></div>'
+    +'<div><b>₹'+Number(v.pool||0).toLocaleString('en-IN')+'</b><small>Prize pool</small></div>'
+    +'<div><b>'+esc(v.visibility||'public')+'</b><small>Access</small></div></div>'
+    +'<a href="upload.html" class="btn btn-accent" style="width:100%;margin-top:10px">Upload your clip</a></div></article>';
+}
+function loadEvents(){
+  var list=document.getElementById('evList'); if(!list) return;
+  var db=getDb();
+  if(!db){ list.innerHTML=BUILTIN.map(evCard).join(''); return; }
+  db.collection('events').orderBy('createdAt','desc').limit(20).get().then(function(snap){
+    var items=[];
+    snap.forEach(function(d){ var v=d.data()||{}; v.status=v.status||'UPCOMING'; items.push(v); });
+    if(!items.length) items=BUILTIN;
+    list.innerHTML=items.map(evCard).join('');
+  }).catch(function(){ list.innerHTML=BUILTIN.map(evCard).join(''); });
+}
+function createEvent(e){
+  e.preventDefault();
+  var ok=document.getElementById('evOk'), err=document.getElementById('evErr');
+  ok.style.display='none'; err.style.display='none';
+  var v={name:document.getElementById('evName').value.trim(),date:document.getElementById('evDate').value.trim(),
+    venue:document.getElementById('evVenue').value.trim(),visibility:document.getElementById('evVis').value,
+    pool:parseFloat(document.getElementById('evPool').value)||0,status:'UPCOMING',createdAt:new Date().toISOString()};
+  if(!v.name||!v.date||!v.venue){ err.textContent='Please fill in the event name, date and venue.'; err.style.display='block'; return; }
+  var db=getDb();
+  if(!db){ err.textContent='Could not reach the service. Please check your connection.'; err.style.display='block'; return; }
+  db.collection('events').add(v).then(function(){
+    ok.textContent='Event created — “'+v.name+'” is now on the list.'; ok.style.display='block';
+    document.getElementById('evForm').reset(); loadEvents();
+  }).catch(function(er){ err.textContent='Could not create the event'+(er&&er.code?' ('+er.code+')':'')+'. The “events” rules may not be published yet.'; err.style.display='block'; });
+}
+loadEvents();
+
 </script>
 </body>
 </html>
