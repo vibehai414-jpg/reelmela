@@ -1,0 +1,22 @@
+# ReelMela
+
+> ReelMela is where you earn money by attending events. Attendees at a college fest or local event in Harda, Indore or Bhopal upload 15–30 second clips to that event; ReelMela turns them into one collab reel and one free aftermovie. Creators earn from verified views on the one video they post on their own account — a ₹10,000 prize pool per event, split by verified views, capped at ₹3,000 per creator, with a ₹100 minimum payout. PRO is ₹99 per event or ₹199 per month; Organizer Growth is ₹4,999 per event; Sponsor is ₹3,000–₹10,000.
+
+## Pages
+
+- [Home](https://reelmela.overc.in/): Earn money by attending events — one event, one collab reel, one free aftermovie.
+- [Events](https://reelmela.overc.in/events.html): Live and upcoming college fest reels in Harda, Indore and Bhopal, including Harda College Fest.
+- [How it works](https://reelmela.overc.in/how-it-works.html): Scan the QR, film 15–30 seconds, ReelMela makes the collab reel and free aftermovie, and your own video earns from verified views.
+- [Earn](https://reelmela.overc.in/earn.html): How the ₹10,000 pool is split by verified views, with an earnings calculator and the ₹3,000 cap and ₹100 minimum.
+- [Aftermovie](https://reelmela.overc.in/aftermovie.html): The free aftermovie for Harda College Fest, made from attendee clips. It pays ₹0 — payout is only on the creator's own video.
+- [Upload](https://reelmela.overc.in/upload.html): Upload a 15–30 second clip for Harda College Fest (MP4, MOV or WEBM, up to 100 MB).
+- [Reels feed](https://reelmela.overc.in/feed.html): The vertical feed of clips from every event, with likes, comments and an Earn badge.
+- [Hindi Studio](https://reelmela.overc.in/hindi-studio.html): Hindi versions and short Hindi clips from event reels — dubbed voice, Hindi subtitles, WhatsApp Status cuts.
+- [Pricing](https://reelmela.overc.in/pricing.html): PRO ₹99 per event or ₹199 per month; Organizer Growth ₹4,999 per event; Premium ₹19,999 per event; Sponsor ₹3,000–₹10,000.
+- [For Business](https://reelmela.overc.in/business.html): Hire local influencers in Harda, Indore or Bhopal in one go — one budget, paid by verified views.
+- [Join](https://reelmela.overc.in/join.html): Join the ReelMela Harda launch waitlist.
+- [Leaderboard](https://reelmela.overc.in/leaderboard.html): Top payout posts by verified views, live during the event.
+- [Wallet](https://reelmela.overc.in/wallet.html): Creator earnings and UPI withdrawal.
+- [Mela Meet](https://reelmela.overc.in/meet.html): Opt-in, 18+ only — your Instagram ID is revealed only after a mutual like.
+- [PRO](https://reelmela.overc.in/pro.html): ReelMela PRO — badge, first-15-seconds placement, HD download, 1.5× earning boost capped at ₹3,000.
+- [Terms, Privacy & Legal](https://reelmela.overc.in/legal.html): Terms of Use, Privacy Policy aligned with India's DPDP Act 2023, and Earnings & Payments.
