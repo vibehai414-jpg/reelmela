@@ -367,6 +367,7 @@ footer a:hover{color:var(--gold)}
       <div class="event-body">
         <p>Main Ground, Harda · Dance, music &amp; the annual fest crowd. The pilot event — this is where ReelMela proves itself.</p>
         <div class="ev-meta"><div><b><span id="cardClips">128</span> clips</b><small>Uploaded</small></div><div><b><span id="cardCreators">42</span> creators</b><small>Joined</small></div><div><b>₹10,000</b><small>Prize pool</small></div><div><b>Today · 4 PM</b><small>Date</small></div></div>
+        <div class="rate-row" data-event="Harda College Fest"><span class="rate-label">Rate this event</span><span class="rate-stars"><button type="button" data-n="1" aria-label="Rate 1 out of 5 stars">★</button><button type="button" data-n="2" aria-label="Rate 2 out of 5 stars">★</button><button type="button" data-n="3" aria-label="Rate 3 out of 5 stars">★</button><button type="button" data-n="4" aria-label="Rate 4 out of 5 stars">★</button><button type="button" data-n="5" aria-label="Rate 5 out of 5 stars">★</button></span><span class="rate-line">Be the first to rate it</span></div>
         <a href="upload.html" class="btn btn-accent" style="width:100%;margin-top:auto">Upload your clip</a>
         <a href="#harda" class="btn btn-line" style="width:100%;margin-top:10px">View event details ↓</a>
         <a href="join.html" style="display:block;text-align:center;color:var(--muted);font-weight:700;margin-top:10px">Join the waitlist →</a>
@@ -377,6 +378,7 @@ footer a:hover{color:var(--gold)}
       <div class="event-body">
         <p>Indore · 2,000 people in one circle, 2,000 phones up. One reel that actually feels like being inside it.</p>
         <div class="ev-meta"><div><b>214</b><small>Joined early</small></div><div><b>— clips</b><small>Opens at gates</small></div><div><b>₹15,000</b><small>Prize pool</small></div><div><b>Friday · 7 PM</b><small>Date</small></div></div>
+        <div class="rate-row" data-event="Indore Garba Night"><span class="rate-label">Rate this event</span><span class="rate-stars"><button type="button" data-n="1" aria-label="Rate 1 out of 5 stars">★</button><button type="button" data-n="2" aria-label="Rate 2 out of 5 stars">★</button><button type="button" data-n="3" aria-label="Rate 3 out of 5 stars">★</button><button type="button" data-n="4" aria-label="Rate 4 out of 5 stars">★</button><button type="button" data-n="5" aria-label="Rate 5 out of 5 stars">★</button></span><span class="rate-line">Be the first to rate it</span></div>
         <a href="join.html" class="btn btn-line" style="width:100%;margin-top:auto">Join — Garba Night</a>
       </div>
     </article>
@@ -385,6 +387,7 @@ footer a:hover{color:var(--gold)}
       <div class="event-body">
         <p>Bhopal · Two stages, local bands, lake-side crowd. Organizer gets a free aftermovie + one reel promoted by every creator there.</p>
         <div class="ev-meta"><div><b>96</b><small>Joined early</small></div><div><b>— clips</b><small>Opens at gates</small></div><div><b>₹25,000</b><small>Prize pool</small></div><div><b>Next Sat · 5 PM</b><small>Date</small></div></div>
+        <div class="rate-row" data-event="Bhopal Music Fest"><span class="rate-label">Rate this event</span><span class="rate-stars"><button type="button" data-n="1" aria-label="Rate 1 out of 5 stars">★</button><button type="button" data-n="2" aria-label="Rate 2 out of 5 stars">★</button><button type="button" data-n="3" aria-label="Rate 3 out of 5 stars">★</button><button type="button" data-n="4" aria-label="Rate 4 out of 5 stars">★</button><button type="button" data-n="5" aria-label="Rate 5 out of 5 stars">★</button></span><span class="rate-line">Be the first to rate it</span></div>
         <a href="join.html" class="btn btn-line" style="width:100%;margin-top:auto">Join — Bhopal Music Fest</a>
       </div>
     </article>
@@ -526,25 +529,31 @@ var BUILTIN=[
   {name:'Indore Garba Night',date:'Friday · 7 PM',venue:'Indore',pool:15000,status:'UPCOMING'},
   {name:'Bhopal Music Fest',date:'Next Sat · 5 PM',venue:'Bhopal',pool:25000,status:'UPCOMING'}
 ];
+function rateRow(name){
+  var stars='';
+  for(var i=1;i<=5;i++){ stars+='<button type="button" data-n="'+i+'" aria-label="Rate '+i+' out of 5 stars">★</button>'; }
+  return '<div class="rate-row" data-event="'+esc(name)+'"><span class="rate-label">Rate this event</span><span class="rate-stars">'+stars+'</span><span class="rate-line">Be the first to rate it</span></div>';
+}
 function evCard(v){
   return '<article class="event"><div class="event-body"><h3>'+esc(v.name)+'</h3>'
     +'<p>'+esc(v.venue||'')+' · '+esc(v.date||'')+'</p>'
     +'<div class="ev-meta"><div><b>'+esc(v.status||'UPCOMING')+'</b><small>Status</small></div>'
     +'<div><b>₹'+Number(v.pool||0).toLocaleString('en-IN')+'</b><small>Prize pool</small></div>'
     +'<div><b>'+esc(v.visibility||'public')+'</b><small>Access</small></div></div>'
+    +rateRow(v.name)
     +'<a href="upload.html" class="btn btn-accent" style="width:100%;margin-top:10px">Upload your clip</a></div></article>';
 }
 function loadEvents(){
   var list=document.getElementById('evList'); if(!list) return;
-  list.innerHTML=BUILTIN.map(evCard).join('');
+  list.innerHTML=BUILTIN.map(evCard).join(''); refreshRatings();
   var db=getDb();
   if(!db){ return; }
   db.collection('events').orderBy('createdAt','desc').limit(20).get().then(function(snap){
     var items=[];
     snap.forEach(function(d){ var v=d.data()||{}; v.status=v.status||'UPCOMING'; items.push(v); });
     if(!items.length) items=BUILTIN;
-    list.innerHTML=items.map(evCard).join('');
-  }).catch(function(){ list.innerHTML=BUILTIN.map(evCard).join(''); });
+    list.innerHTML=items.map(evCard).join(''); refreshRatings();
+  }).catch(function(){ list.innerHTML=BUILTIN.map(evCard).join(''); refreshRatings(); });
 }
 function createEvent(e){
   e.preventDefault();
@@ -563,9 +572,57 @@ function createEvent(e){
 }
 loadEvents();
 
+/* ATTENDEE RATING — Firestore 'eventRatings' (project reelmela-82217).
+   One tap = one rating {event, rating 1-5, createdAt}. Average + count shown live.
+   Lesson from @concertwaala: the verdict is the content — the rating row IS the feature,
+   no "link in bio" style promo for it. */
+function rateLineText(avg,count){
+  if(!count) return 'Be the first to rate it';
+  return '★ '+avg.toFixed(1)+' · '+count+' rating'+(count===1?'':'s');
+}
+function refreshRatings(){
+  var db=getDb(); if(!db) return;
+  document.querySelectorAll('.rate-row').forEach(function(row){
+    var name=row.getAttribute('data-event'); if(!name) return;
+    var line=row.querySelector('.rate-line'); if(!line) return;
+    db.collection('eventRatings').where('event','==',name).get().then(function(snap){
+      var total=0,count=0;
+      snap.forEach(function(d){ var r=(d.data()||{}).rating; if(typeof r==='number'){ total+=r; count++; } });
+      line.textContent=rateLineText(count?total/count:0,count);
+    }).catch(function(){ /* keep default line */ });
+  });
+}
+document.addEventListener('click',function(e){
+  var btn=(e.target&&e.target.closest)?e.target.closest('.rate-stars button'):null;
+  if(!btn) return;
+  var row=btn.closest('.rate-row'); if(!row) return;
+  var n=parseInt(btn.getAttribute('data-n'),10);
+  if(!(n>=1&&n<=5)) return;
+  var name=row.getAttribute('data-event');
+  var db=getDb(); if(!db) return;
+  row.querySelectorAll('.rate-stars button').forEach(function(b){ b.disabled=true; });
+  db.collection('eventRatings').add({event:name,rating:n,createdAt:new Date().toISOString()}).then(function(){
+    row.querySelectorAll('.rate-stars button').forEach(function(b){
+      if(parseInt(b.getAttribute('data-n'),10)<=n) b.classList.add('on');
+    });
+    refreshRatings();
+  }).catch(function(){
+    row.querySelectorAll('.rate-stars button').forEach(function(b){ b.disabled=false; });
+  });
+});
+refreshRatings();
+
 </script>
 
 <style>
+/* ATTENDEE RATING — stars + live average (Firestore 'eventRatings') */
+.rate-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:12px 0 4px;padding-top:12px;border-top:1px dashed rgba(255,182,46,.35)}
+.rate-label{font-size:13px;font-weight:800;color:var(--muted)}
+.rate-stars{display:flex;gap:2px}
+.rate-stars button{background:none;border:0;padding:4px 2px;min-width:32px;min-height:32px;font-size:22px;line-height:1;color:#5B4A7A;cursor:pointer}
+.rate-stars button.on{color:#FFB62E}
+.rate-stars button:disabled{cursor:default}
+.rate-line{font-size:13px;font-weight:700;color:#FFD97A}
 /* APP SHELL — bottom tab bar, mobile only */
 .appbar{position:fixed;position:sticky;bottom:0;left:0;right:0;bottom:0;z-index:90;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(21,10,38,.98);border-top:2px solid rgba(255,182,46,.5);padding:6px 4px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px rgba(0,0,0,.45)}
 .appbar a{display:flex;flex-direction:column;align-items:center;gap:2px;color:#9D88C9;font-size:11px;font-weight:800;padding:6px 2px 4px;border-radius:12px;min-height:52px;text-decoration:none}
