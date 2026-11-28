@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#150A26">
+<link rel="manifest" href="/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ReelMela">
+<link rel="apple-touch-icon" href="/icon.svg">
+
 <meta name="description" content="Mela Meet: opt-in, 18+ only. Your Instagram ID is revealed only after a mutual like. One-tap block and report on every profile.">
 <meta name="keywords" content="ReelMela, earn money attending events, collaborative event reels, collab reel, event reels Harda, Indore events, Bhopal events, college fest reels, free aftermovie, earn money from verified views, earn by views, upload clips, Madhya Pradesh events">
 <meta name="author" content="ReelMela">
@@ -511,5 +518,28 @@ function loadMeet(){
 loadMeet();
 
 </script>
+
+<style>
+/* APP SHELL — bottom tab bar, mobile only */
+.appbar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(21,10,38,.96);backdrop-filter:blur(12px);border-top:2px solid rgba(255,182,46,.5);padding:6px 4px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px rgba(0,0,0,.45)}
+.appbar a{display:flex;flex-direction:column;align-items:center;gap:2px;color:#9D88C9;font-size:11px;font-weight:800;padding:6px 2px 4px;border-radius:12px;min-height:52px;text-decoration:none}
+.appbar a .ic{font-size:21px;line-height:1}
+.appbar a.active{color:#FFB62E}
+.appbar a.upload-tab .ic{width:52px;height:52px;margin-top:-26px;border-radius:50%;background:linear-gradient(180deg,#FF8A3D,#F43F4E);color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 6px 18px rgba(255,77,94,.55);border:3px solid #150A26}
+@media(min-width:900px){.appbar{display:none}}
+@media(max-width:899px){body{padding-bottom:76px}footer{padding-bottom:90px}}
+</style>
+<nav class="appbar" aria-label="App navigation">
+  <a href="index.html" data-tab="index.html"><span class="ic">&#8962;</span>Home</a>
+  <a href="events.html" data-tab="events.html"><span class="ic">&#127914;</span>Events</a>
+  <a href="upload.html" data-tab="upload.html" class="upload-tab"><span class="ic">+</span>Upload</a>
+  <a href="feed.html" data-tab="feed.html"><span class="ic">&#9654;</span>Feed</a>
+  <a href="wallet.html" data-tab="wallet.html"><span class="ic">&#128176;</span>Wallet</a>
+</nav>
+<script>
+/* APP SHELL — highlight the active tab */
+(function(){var p=(location.pathname.split('/').pop()||'index.html');document.querySelectorAll('.appbar a').forEach(function(a){if(a.getAttribute('data-tab')===p)a.classList.add('active');});})();
+</script>
+
 </body>
 </html>
