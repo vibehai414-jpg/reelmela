@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#150A26">
+<link rel="manifest" href="/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ReelMela">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="ReelMela admin — waitlist.">
+<title>Admin — Waitlist | ReelMela</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#150A26; --panel:#221243; --panel2:#2A1749; --line:#3D2566; --line2:#51337F;
+  --text:#FFF7EA; --muted:#CDBCEC; --dim:#9D88C9;
+  --orange:#FF7A29; --pink:#FF5DA2; --purple:#8B5CFF; --green:#3ED97A; --gold:#FFB62E;
+  --red:#FF4D5E; --teal:#2ED3B7; --cream:#FFF3D6;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--text);font-family:Nunito,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;
+  background:
+  radial-gradient(120% 60% at 85% -5%,rgba(255,77,94,.16),transparent 60%),
+  radial-gradient(100% 55% at 8% 0%,rgba(255,182,46,.13),transparent 55%),
+  linear-gradient(180deg,#1D0E38 0%,#150A26 34%,#12081F 100%);
+}
+::selection{background:var(--gold);color:#33124D}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+a{color:inherit;text-decoration:none}
+h1,h2{font-family:"Baloo 2",Nunito,sans-serif;line-height:1.02;margin:0;letter-spacing:0}
+h1{font-size:clamp(38px,6vw,58px);font-weight:800}
+p{margin:0}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+.mono{font-family:"JetBrains Mono",monospace}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:13px 26px;border-radius:999px;font-weight:800;font-size:15px;border:2px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s;font-family:"Baloo 2",sans-serif;letter-spacing:.02em;box-shadow:0 4px 0 rgba(0,0,0,.35)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.btn-accent{background:linear-gradient(180deg,#FF8A3D,#F43F4E);color:#fff}
+.btn-accent:hover{background:linear-gradient(180deg,#FF9A55,#FF4D5E)}
+.btn-line{background:rgba(255,243,214,.04);border-color:rgba(255,243,214,.4);color:#FFF7EA}
+.btn-line:hover{border-color:var(--cream);background:rgba(255,243,214,.1)}
+.kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;display:inline-flex;align-items:center;gap:10px;background:rgba(255,182,46,.1);border:1px solid rgba(255,182,46,.35);padding:6px 12px;border-radius:999px}
+.kicker:before{content:"★";color:var(--gold);font-size:12px}
+nav{position:sticky;top:0;z-index:60;background:rgba(21,10,38,.9);border-bottom:2px solid rgba(255,182,46,.5)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:14px}
+.logo{font-family:"Baloo 2";font-weight:800;font-size:23px;letter-spacing:0;display:inline-flex;align-items:center}
+.logo i{font-style:normal;color:var(--gold)}
+section{padding:56px 0 40px}
+.card{border:2px solid var(--line2);border-radius:16px;background:var(--panel);padding:24px;margin-top:22px}
+.card h2{font-size:24px;margin-bottom:6px}
+.muted{color:var(--muted);font-weight:600}
+.dim{color:var(--dim)}
+.count{font-family:"Baloo 2";font-weight:800;font-size:44px;line-height:1;color:var(--gold)}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14.5px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--dim)}
+td{font-weight:600}
+td .sub{color:var(--dim);font-size:12.5px;font-weight:600}
+.note{background:#180C2E;border:1px solid var(--line2);border-radius:12px;padding:14px 16px;color:var(--muted);font-size:14px;font-weight:600;margin-top:16px}
+.err{background:#2A0E12;border:1px solid #5B1F24;color:#FFB3B8;padding:14px 16px;border-radius:12px;font-weight:600;margin-top:16px}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+footer{padding:34px 0 48px;border-top:1px solid var(--line);color:var(--dim);font-size:13.5px;font-weight:600}
+@media(max-width:700px){table{font-size:13.5px}th:nth-child(3),td:nth-child(3){display:none}}
+</style>
+</head>
+<body>
+<nav aria-label="Main navigation"><div class="wrap nav-in">
+  <a href="index.html" class="logo" aria-label="ReelMela — home">Reel<i>Mela</i></a>
+  <a href="index.html" class="btn btn-line" style="min-height:42px;padding:9px 18px">Back to site</a>
+</div></nav>
+
+<section aria-label="Admin waitlist"><div class="wrap">
+  <div class="kicker">Admin only</div>
+  <h1 style="margin-top:14px">Waitlist</h1>
+  <p class="muted" style="margin-top:10px;max-width:560px">Everyone who joined the ReelMela waiting list. Only you can see this page — it is not linked anywhere on the site.</p>
+
+  <div class="card" id="signedOut" style="display:none">
+    <h2>Sign in to view</h2>
+    <p class="muted" style="margin-top:6px">Sign in with the Google account that runs ReelMela.</p>
+    <div class="row">
+      <button class="btn btn-accent" id="signInBtn" type="button">Sign in with Google</button>
+    </div>
+    <p class="dim" style="font-size:13px;margin-top:14px" id="signInErr"></p>
+  </div>
+
+  <div class="card" id="notAdmin" style="display:none">
+    <h2>Admin only</h2>
+    <p class="muted" style="margin-top:6px">You are signed in as <strong style="color:#fff" id="notAdminEmail"></strong>. This page is only for the ReelMela admin.</p>
+    <div class="row">
+      <button class="btn btn-line" id="signOutBtn2" type="button">Sign out</button>
+    </div>
+  </div>
+
+  <div class="card" id="adminView" style="display:none">
+    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div class="count" id="wlCount">–</div>
+        <p class="muted" style="margin-top:4px">people on the waitlist</p>
+      </div>
+      <div style="text-align:right">
+        <p class="dim" style="font-size:13px">Signed in as<br><strong style="color:#fff" id="adminEmail"></strong></p>
+        <div class="row" style="justify-content:flex-end;margin-top:10px">
+          <button class="btn btn-line" id="refreshBtn" type="button" style="min-height:42px;padding:9px 18px">Refresh</button>
+          <button class="btn btn-line" id="signOutBtn" type="button" style="min-height:42px;padding:9px 18px">Sign out</button>
+        </div>
+      </div>
+    </div>
+    <div id="wlList"></div>
+    <div class="err" id="wlError" style="display:none"></div>
+    <div class="note">New sign-ups appear here as soon as someone joins. Entries are newest first.</div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span><strong style="color:#fff">ReelMela</strong> — admin page. Not linked anywhere on the site.</span></div></footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* ADMIN — waitlist viewer. Only the admin email below may read the waitlist;
+   the Firestore rule enforces this server-side. This page is not linked
+   anywhere on the site and is excluded from search engines. */
+var ADMIN_EMAIL = "vibehai414@gmail.com";
+var firebaseConfig = {
+  apiKey: "AIzaSyAD6aFTJWoOxHu7qV_IOOcEw4fK_YH0B0M",
+  authDomain: "reelmela-82217.firebaseapp.com",
+  projectId: "reelmela-82217",
+  storageBucket: "reelmela-82217.firebasestorage.app",
+  messagingSenderId: "155518655931",
+  appId: "1:155518655931:web:ca918d139a2c17799c389e"
+};
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+var auth = firebase.auth();
+var db = firebase.firestore();
+var signedOut = document.getElementById('signedOut');
+var notAdmin = document.getElementById('notAdmin');
+var adminView = document.getElementById('adminView');
+var wlList = document.getElementById('wlList');
+var wlCount = document.getElementById('wlCount');
+var wlError = document.getElementById('wlError');
+function show(el) { el.style.display = 'block'; }
+function hide(el) { el.style.display = 'none'; }
+function fmtTime(iso) {
+  try { return new Date(iso).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' }); }
+  catch (e) { return iso || ''; }
+}
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function loadWaitlist() {
+  wlError.style.display = 'none'; wlError.textContent = '';
+  wlList.innerHTML = '<p class="muted" style="margin-top:16px">Loading…</p>';
+  db.collection('waitlist').orderBy('createdAt', 'desc').get().then(function (snap) {
+    wlCount.textContent = snap.size;
+    if (snap.empty) {
+      wlList.innerHTML = '<p class="muted" style="margin-top:16px">No one has joined yet.</p>';
+      return;
+    }
+    var rows = '';
+    snap.forEach(function (doc) {
+      var d = doc.data() || {};
+      rows += '<tr><td>' + esc(d.name) + '</td><td>' + esc(d.email) + '</td><td>' + esc(fmtTime(d.createdAt)) + '</td></tr>';
+    });
+    wlList.innerHTML = '<table><thead><tr><th>Name</th><th>Email / WhatsApp</th><th>Joined</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  }).catch(function (err) {
+    wlCount.textContent = '–';
+    wlList.innerHTML = '';
+    wlError.textContent = 'Could not load the waitlist' + (err && err.code ? ' (' + err.code + ')' : '') + '. If you are the admin, check the Firestore rules allow reads for your account.';
+    wlError.style.display = 'block';
+  });
+}
+document.getElementById('signInBtn').addEventListener('click', function () {
+  var errBox = document.getElementById('signInErr'); errBox.textContent = '';
+  var provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch(function (err) {
+    if (err && (err.code === 'auth/popup-blocked' || err.code === 'auth/popup-closed-by-user')) {
+      auth.signInWithRedirect(provider);
+    } else {
+      errBox.textContent = 'Sign-in failed' + (err && err.code ? ' (' + err.code + ')' : '') + '. Please try again.';
+    }
+  });
+});
+function doSignOut() { auth.signOut(); }
+document.getElementById('signOutBtn').addEventListener('click', doSignOut);
+document.getElementById('signOutBtn2').addEventListener('click', doSignOut);
+document.getElementById('refreshBtn').addEventListener('click', loadWaitlist);
+auth.onAuthStateChanged(function (user) {
+  hide(signedOut); hide(notAdmin); hide(adminView);
+  if (!user) { show(signedOut); return; }
+  var email = (user.email || '').toLowerCase();
+  if (email === ADMIN_EMAIL) {
+    document.getElementById('adminEmail').textContent = user.email;
+    show(adminView);
+    loadWaitlist();
+  } else {
+    document.getElementById('notAdminEmail').textContent = user.email || 'unknown account';
+    show(notAdmin);
+  }
+});
+auth.getRedirectResult().catch(function () {});
+</script>
+
+<style>
+/* APP SHELL — bottom tab bar, mobile only */
+.appbar{position:fixed;position:sticky;bottom:0;left:0;right:0;bottom:0;z-index:90;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(21,10,38,.98);border-top:2px solid rgba(255,182,46,.5);padding:6px 4px calc(8px + env(safe-area-inset-bottom));box-shadow:0 -8px 24px rgba(0,0,0,.45)}
+.appbar a{display:flex;flex-direction:column;align-items:center;gap:2px;color:#9D88C9;font-size:11px;font-weight:800;padding:6px 2px 4px;border-radius:12px;min-height:52px;text-decoration:none}
+.appbar a .ic{font-size:21px;line-height:1}
+.appbar a.active{color:#FFB62E}
+.appbar a.upload-tab .ic{width:52px;height:52px;margin-top:-26px;border-radius:50%;background:linear-gradient(180deg,#FF8A3D,#F43F4E);color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 6px 18px rgba(255,77,94,.55);border:3px solid #150A26}
+@media(min-width:900px){.appbar{display:none}}
+@media(max-width:899px){body{padding-bottom:76px}footer{padding-bottom:90px}}
+</style>
+<nav class="appbar" aria-label="App navigation">
+  <a href="index.html" data-tab="index.html"><span class="ic">&#8962;</span>Home</a>
+  <a href="events.html" data-tab="events.html"><span class="ic">&#127914;</span>Events</a>
+  <a href="upload.html" data-tab="upload.html" class="upload-tab"><span class="ic">+</span>Upload</a>
+  <a href="feed.html" data-tab="feed.html"><span class="ic">&#9654;</span>Feed</a>
+  <a href="wallet.html" data-tab="wallet.html"><span class="ic">&#128176;</span>Wallet</a>
+</nav>
+<script>
+/* APP SHELL — highlight the active tab */
+(function(){var p=(location.pathname.split('/').pop()||'index.html');document.querySelectorAll('.appbar a').forEach(function(a){if(a.getAttribute('data-tab')===p)a.classList.add('active');});})();
+/* APP SHELL — service worker (installable app, offline shell) */
+if('serviceWorker' in navigator){try{navigator.serviceWorker.register('/sw.js').catch(function(){});}catch(e){}}
+</script>
+
+</body>
+</html>
